@@ -1,5 +1,9 @@
 *.py[cod]
 
+# Project related
+local_settings.py
+fabric_settings.py
+
 # C extensions
 *.so
 
