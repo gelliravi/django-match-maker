@@ -18,7 +18,7 @@ aims to solve that problem:
 * After a game, people can enter the end result and **vote for player of the
   match** (in their own team and in the other team). This will go into the
   player's skill calculation as well.
-* Now we can **collect all kinds of data** which would allow us to generate a 
+* Now we can **collect all kinds of data** which would allow us to generate a
   **high-score list** for the neighborhood, the city or even globally:
   * Ratio of won/lost games per player
   * Average playing time per player
@@ -28,3 +28,16 @@ This should be a mobile app but since I don't really have the time to mess
 around with PhoneGap I will start with a simple website first. With HTML5
 geolocation API it should actually be possible to get the whole check-in thing
 up and running with just a mobile browser.
+
+Contribute
+==========
+
+If you want to contribute, here is how you can setup the project locally:
+
+    mkdir -p ~/Projects/matchmaker
+    cd ~/Projects/matchmaker
+    mkvirtualenv -p python2.7 matchmaker
+    git clone git://github.com/mbrochh/django-match-maker.git src
+    cd src/matchmaker
+    pip install -r requirements.txt
+    ./manage.py runserver
