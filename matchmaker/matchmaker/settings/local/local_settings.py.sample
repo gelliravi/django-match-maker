@@ -1,0 +1,7 @@
+"""Local settings."""
+import os
+
+from matchmaker.settings.base_settings import PROJECT_ROOT
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../matchmaker_media')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '../../matchmaker_static')
