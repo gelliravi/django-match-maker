@@ -10,6 +10,7 @@ South==0.7.6
 # Development related
 # =============================================================================
 Fabric==1.5.1
+-e git+git://github.com/bmcustodio/flake8.git@6a641337c99e7cc2ee7f39e6bc9aea0c0c820d66#egg=flake8
 django-development-fabfile==0.1
 ipython==0.13.1
 ipdb==0.7
