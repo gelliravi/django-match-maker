@@ -14,9 +14,6 @@ DATABASES = {
 
 SITE_ID = 1
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '*h(0jul7hrxo1tmg*brce!p3(9cn8bu!(ia&amp;1fbl_qbj05(-!@'
-
 ROOT_URLCONF = 'matchmaker.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.

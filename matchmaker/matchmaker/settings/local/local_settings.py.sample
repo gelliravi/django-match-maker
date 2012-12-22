@@ -3,5 +3,28 @@ import os
 
 from matchmaker.settings.base_settings import PROJECT_ROOT
 
+# ============================================================================
+# Debug settings
+# ============================================================================
+DEBUG = True
+TEMPLATEDEBUG = DEBUG
+
+
+# ============================================================================
+# Staticfiles settings
+# ============================================================================
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../matchmaker_media')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, '../../matchmaker_static')
+
+
+# ============================================================================
+# Fabfile settings
+# ============================================================================
+LOCAL_PG_ADMIN_ROLE = 'username'
+
+
+# ============================================================================
+# Django settings
+# ============================================================================
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'www.miniwebtool.com/django-secret-key-generator/'
