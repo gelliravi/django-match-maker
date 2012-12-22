@@ -1,0 +1,19 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>{% trans "Welcome to MatchMaker" %}</h1>
+            <p>
+                {% blocktrans %}
+                This app aims to help you to find people in your neighborhood
+                who want to play basketball with you.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

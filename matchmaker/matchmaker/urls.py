@@ -2,14 +2,14 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 
+from matchmaker.views import HomeView
+
 
 admin.autodiscover()
 
 
 urlpatterns = patterns(
     '',
-    # Examples:
-    # url(r'^$', 'matchmaker.views.home', name='home'),
-    # url(r'^matchmaker/', include('matchmaker.foo.urls')),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -24,6 +24,7 @@ EXTERNAL_APPS = [
 ]
 
 INTERNAL_APPS = [
+    'matchmaker',
     'places',
 ]
 
