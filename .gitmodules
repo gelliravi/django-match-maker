@@ -1,3 +1,3 @@
-[submodule "submodules/bootstrap"]
-	path = submodules/bootstrap
+[submodule "matchmaker/submodules/bootstrap"]
+	path = matchmaker/submodules/bootstrap
 	url = git://github.com/twitter/bootstrap.git
