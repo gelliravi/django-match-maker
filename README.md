@@ -41,3 +41,18 @@ If you want to contribute, here is how you can setup the project locally:
     cd src/matchmaker
     pip install -r requirements.txt
     ./manage.py runserver
+
+You need to install PostgreSQL 9.2 and PostGIS 2.0. On OSX The easiest way to
+do that is
+
+1. Install [Postgres.app](http://postgresapp.com/). Make sure to place the
+   app in your `/Applications/` folder **before** you run it the first time.
+2. Create the geospatial database::
+
+    psql -h localhost
+    create database matchmaker;
+    create user matchmaker with password 'matchmaker';
+    grant all privileges on database matchmaker to matchmaker;
+    \connect matchmaker;
+    create extension postgis;
+    ./manage.py syncdb
