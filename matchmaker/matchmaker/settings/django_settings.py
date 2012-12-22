@@ -3,12 +3,12 @@
 # Override this in your local_settings.py on the server.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'matchmaker',                      # Or path to database file if using sqlite3.
-        'USER': 'matchmaker',                      # Not used with sqlite3.
-        'PASSWORD': 'matchmaker',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.  # nopep8
+        'NAME': 'matchmaker',                      # Or path to database file if using sqlite3.  # nopep8
+        'USER': 'matchmaker',                      # Not used with sqlite3.  # nopep8
+        'PASSWORD': 'matchmaker',                  # Not used with sqlite3.  # nopep8
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.  # nopep8
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.  # nopep8
     }
 }
 

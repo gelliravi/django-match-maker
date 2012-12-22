@@ -18,7 +18,10 @@ DJANGO_APPS = [
     'django.contrib.gis',
 ]
 
-EXTERNAL_APPS = []
+EXTERNAL_APPS = [
+    'django_extensions',
+    'south',
+]
 
 INTERNAL_APPS = []
 
