@@ -40,7 +40,7 @@ HOST_PROD = '{0}.webfactional.com'.format(PROJECT_NAME)
 # You should keep them identical for all tiers (dev, stage, prod).
 SERVER_APACHE_BIN_DIR = '/home/{0}/webapps/{0}_django/apache2/bin/'.format(
     PROJECT_NAME)
-SERVER_REPO_ROOT = '/home/{0}/src/{0}/'.format(PROJECT_NAME)
+SERVER_REPO_ROOT = '/home/{0}/src/django-match-maker/'.format(PROJECT_NAME)
 SERVER_PROJECT_ROOT = '/home/{0}/webapps/{0}_django/{0}/'.format(PROJECT_NAME)
 SERVER_MEDIA_ROOT = '/home/{0}/webapps/{0}_media/'.format(PROJECT_NAME)
 SERVER_DB_BACKUP_DIR = '/home/{0}/backups/postgres/'.format(PROJECT_NAME)
