@@ -10,4 +10,5 @@ class CreatePlaceViewTestCase(ViewTestMixin, TestCase):
         return 'places_create'
 
     def test_view(self):
+        """CreatePlaceView should be callable when anonymous."""
         self.should_be_callable_when_anonymous()
