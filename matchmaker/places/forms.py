@@ -1,0 +1,25 @@
+"""Forms for the ``places`` app."""
+from django import forms
+from django.contrib.gis.geos import Point
+
+from places.models import Place
+
+
+class CreatePlaceForm(forms.ModelForm):
+    class Meta:
+        model = Place
+        exclude = ['point', ]
+
+    def __init__(self, *args, **kwargs):
+        super(CreatePlaceForm, self).__init__(*args, **kwargs)
+        self.fields['lat'] = forms.FloatField(
+            widget=forms.HiddenInput(),
+        )
+        self.fields['lng'] = forms.FloatField(
+            widget=forms.HiddenInput(),
+        )
+
+    def save(self, *args, **kwargs):
+        self.instance.point = Point(
+            self.cleaned_data['lng'], self.cleaned_data['lat'])
+        return super(CreatePlaceForm, self).save(*args, **kwargs)

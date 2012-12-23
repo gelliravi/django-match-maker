@@ -5115,3 +5115,6 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+#mapCanvas img {
+  max-width: none;
+}
