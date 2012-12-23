@@ -5,3 +5,4 @@ setup_environ(settings)
 
 
 from development_fabfile.fabfile import *
+from .local import *
