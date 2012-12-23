@@ -20,6 +20,7 @@ class Place(models.Model):
     point = models.PointField(
         verbose_name=_('Point'),
         geography=True,
+        null=True, blank=False,
     )
 
     type = models.ForeignKey(

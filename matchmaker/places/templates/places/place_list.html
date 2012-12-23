@@ -1,0 +1,20 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>{% trans "Nearby places" %}</h1>
+            <div id="placeList"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block "extrajs" %}
+<script src="{{ STATIC_URL }}places/js/geo-success-place-list.js"></script>
+<script src="{{ STATIC_URL }}places/js/geolocator.js"></script>
+{% endblock %}
