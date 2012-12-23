@@ -20,6 +20,8 @@ class CreatePlaceForm(forms.ModelForm):
         )
 
     def save(self, *args, **kwargs):
+        assert hasattr(self, 'cleaned_data'), (
+            'Please call `is_valid` before calling `save`')
         self.instance.point = Point(
             self.cleaned_data['lng'], self.cleaned_data['lat'])
         return super(CreatePlaceForm, self).save(*args, **kwargs)
