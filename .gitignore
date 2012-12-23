@@ -1,6 +1,7 @@
 *.py[cod]
 
 # Project related
+coverage/
 local_settings.py
 fabric_settings.py
 

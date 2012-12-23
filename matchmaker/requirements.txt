@@ -3,15 +3,21 @@
 # =============================================================================
 -e git+git://github.com/django/django.git@d19109fd37e75ccf29d2ca64370102753dbc7c5b#egg=django
 django-extensions==1.0.2
+django-libs==0.11
 South==0.7.6
 
 
 # =============================================================================
 # Development related
 # =============================================================================
-Fabric==1.5.1
 -e git+git://github.com/bmcustodio/flake8.git@6a641337c99e7cc2ee7f39e6bc9aea0c0c820d66#egg=flake8
+coverage==3.6b1
+django-coverage==1.2.2
 django-development-fabfile==0.1
-ipython==0.13.1
+nose==1.2.1
+django-nose==1.1
+Fabric==1.5.1
+factory_boy==1.2.0
 ipdb==0.7
+ipython==0.13.1
 psycopg2==2.4.6
