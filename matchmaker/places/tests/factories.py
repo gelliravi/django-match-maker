@@ -10,7 +10,7 @@ class PlaceFactory(factory.Factory):
     FACTORY_FOR = Place
 
     name = 'Test Place'
-    point = Point(1, 2)
+    point = Point(103.9478796, 1.3568494)
 
 
 class PlaceTypeFactory(factory.Factory):
