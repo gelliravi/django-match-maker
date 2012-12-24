@@ -40,6 +40,11 @@ class Checkin(models.Model):
         verbose_name=_('Time'),
     )
 
+    expired = models.BooleanField(
+        default=False,
+        verbose_name=_('Expired'),
+    )
+
     objects = models.GeoManager()
 
     def __unicode__(self):
@@ -48,3 +53,9 @@ class Checkin(models.Model):
         else:
             username = self.user_name
         return '{0} @ {1}'.format(username, self.place.name)
+
+    def save(self, *args, **kwargs):
+        if self.user:
+            Checkin.objects.filter(user=self.user, expired=False).update(
+                expired=True)
+        super(Checkin, self).save(*args, **kwargs)

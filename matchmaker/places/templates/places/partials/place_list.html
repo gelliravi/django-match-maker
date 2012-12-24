@@ -1,6 +1,10 @@
-{% load checkins_tags %}
+{% load i18n checkins_tags %}
+{% load url from future %}
 
 {% for place in places %}
     {% get_checkins place as checkins %}
-    <div>{{ place.name }} ({{ place.distance.m|floatformat:"0" }}m) ({{ checkins.count }} players)</div>
+    <div>
+        {{ place.name }} ({{ place.distance.m|floatformat:"0" }}m) ({{ checkins.count }} players)
+        <a href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Checkin here" %}</a>
+    </div>
 {% endfor %}

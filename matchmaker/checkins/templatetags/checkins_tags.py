@@ -8,5 +8,5 @@ from checkins.models import Checkin
 
 @register.assignment_tag
 def get_checkins(place):
-    checkins = Checkin.objects.filter(place=place)
+    checkins = Checkin.objects.filter(place=place, expired=False)
     return checkins
