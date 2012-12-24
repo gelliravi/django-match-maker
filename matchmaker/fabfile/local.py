@@ -13,7 +13,8 @@ def create_database():
     local('psql -h localhost matchmaker -c "CREATE EXTENSION postgis"')
     local('psql -h localhost -c "GRANT ALL PRIVILEGES ON DATABASE {0}'
           ' to {0}"'.format(settings.PROJECT_NAME))
-    local('psql -h localhost matchmaker -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {0}"'.format(settings.PROJECT_NAME))
+    local('psql -h localhost matchmaker -c "GRANT ALL PRIVILEGES ON ALL TABLES'
+          ' IN SCHEMA public TO {0}"'.format(settings.PROJECT_NAME))
 
 
 def drop_database():

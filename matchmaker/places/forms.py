@@ -5,19 +5,24 @@ from django.contrib.gis.geos import Point
 from places.models import Place
 
 
-class PlaceCreateForm(forms.ModelForm):
-    class Meta:
-        model = Place
-        exclude = ['point', ]
-
-    def __init__(self, *args, **kwargs):
-        super(PlaceCreateForm, self).__init__(*args, **kwargs)
+class FormWithLatLngMixin(object):
+    def add_lat_lng_fields(self):
         self.fields['lat'] = forms.FloatField(
             widget=forms.HiddenInput(),
         )
         self.fields['lng'] = forms.FloatField(
             widget=forms.HiddenInput(),
         )
+
+
+class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
+    class Meta:
+        model = Place
+        exclude = ['point', ]
+
+    def __init__(self, *args, **kwargs):
+        super(PlaceCreateForm, self).__init__(*args, **kwargs)
+        self.add_lat_lng_fields()
 
     def save(self, *args, **kwargs):
         assert hasattr(self, 'cleaned_data'), (

@@ -16,6 +16,13 @@ class Checkin(models.Model):
     user = models.ForeignKey(
         'auth.User',
         verbose_name=_('User'),
+        null=True, blank=True,
+    )
+
+    user_name = models.CharField(
+        max_length=256,
+        verbose_name=_('Name'),
+        blank=True,
     )
 
     place = models.ForeignKey(
