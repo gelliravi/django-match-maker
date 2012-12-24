@@ -43,4 +43,8 @@ class Checkin(models.Model):
     objects = models.GeoManager()
 
     def __unicode__(self):
-        return '{0} @ {1}'.format(self.user.email, self.place.name)
+        if self.user:
+            username = self.user.email
+        else:
+            username = self.user_name
+        return '{0} @ {1}'.format(username, self.place.name)
