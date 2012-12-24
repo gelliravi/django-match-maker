@@ -1,3 +1,6 @@
+{% load checkins_tags %}
+
 {% for place in places %}
-    <div>{{ place.name }} ({{ place.distance.m|floatformat:"0" }}m)</div>
+    {% get_checkins place as checkins %}
+    <div>{{ place.name }} ({{ place.distance.m|floatformat:"0" }}m) ({{ checkins.count }} players)</div>
 {% endfor %}
