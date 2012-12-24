@@ -7,13 +7,13 @@ from places.tests.factories import PlaceFactory
 from places.views import PlaceListView
 
 
-class CreatePlaceViewTestCase(ViewTestMixin, TestCase):
+class PlaceCreateViewTestCase(ViewTestMixin, TestCase):
     """Tests for the ``CreatePlaceView`` view class."""
     def get_view_name(self):
         return 'places_create'
 
     def test_view(self):
-        """CreatePlaceView should be callable when anonymous."""
+        """PlaceCreateView should be callable when anonymous."""
         self.should_be_callable_when_anonymous()
 
 

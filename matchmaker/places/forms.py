@@ -5,13 +5,13 @@ from django.contrib.gis.geos import Point
 from places.models import Place
 
 
-class CreatePlaceForm(forms.ModelForm):
+class PlaceCreateForm(forms.ModelForm):
     class Meta:
         model = Place
         exclude = ['point', ]
 
     def __init__(self, *args, **kwargs):
-        super(CreatePlaceForm, self).__init__(*args, **kwargs)
+        super(PlaceCreateForm, self).__init__(*args, **kwargs)
         self.fields['lat'] = forms.FloatField(
             widget=forms.HiddenInput(),
         )
@@ -24,4 +24,4 @@ class CreatePlaceForm(forms.ModelForm):
             'Please call `is_valid` before calling `save`')
         self.instance.point = Point(
             self.cleaned_data['lng'], self.cleaned_data['lat'])
-        return super(CreatePlaceForm, self).save(*args, **kwargs)
+        return super(PlaceCreateForm, self).save(*args, **kwargs)

@@ -1,7 +1,7 @@
 """URLs for the ``places`` app."""
 from django.conf.urls.defaults import patterns, url
 
-from places.views import CreatePlaceView, PlaceListView
+from places.views import PlaceCreateView, PlaceListView
 
 
 urlpatterns = patterns(
@@ -11,6 +11,6 @@ urlpatterns = patterns(
         name='places_list',),
 
     url(r'^create/$',
-        CreatePlaceView.as_view(),
+        PlaceCreateView.as_view(),
         name='places_create',),
 )

@@ -4,13 +4,13 @@ from django.contrib.gis.measure import D
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, TemplateView
 
-from places.forms import CreatePlaceForm
+from places.forms import PlaceCreateForm
 from places.models import Place
 
 
-class CreatePlaceView(CreateView):
+class PlaceCreateView(CreateView):
     """Allows to create a new place."""
-    form_class = CreatePlaceForm
+    form_class = PlaceCreateForm
     model = Place
     success_url = '/'
 
