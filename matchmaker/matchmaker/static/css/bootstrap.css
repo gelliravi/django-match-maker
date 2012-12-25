@@ -5116,7 +5116,7 @@ a.badge:hover {
   position: fixed;
 }
 body {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 .fontBrand {
   font-family: 'Fugaz One', cursive;
@@ -5139,6 +5139,19 @@ body {
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}
+.subhead {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.subhead h1 {
+  font-size: 60px;
+}
+.subhead p {
+  margin-bottom: 20px;
+}
+.subhead .navbar {
+  display: none;
 }
 .marketing {
   text-align: center;
@@ -5193,6 +5206,11 @@ body {
 }
 #mapCanvas img {
   max-width: none;
+}
+.placeItem {
+  background-color: #eeeeee;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 .footer {
   text-align: center;

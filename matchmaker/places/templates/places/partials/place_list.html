@@ -3,8 +3,10 @@
 
 {% for place in places %}
     {% get_checkins place as checkins %}
-    <div>
-        {{ place.name }} ({{ place.distance.m|floatformat:"0" }}m) ({{ checkins.count }} players)
-        <a href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Checkin here" %}</a>
+    <div class="placeItem">
+        <h2>{{ place.name }}</h2>
+        <p>{% trans "Distance:" %}: {{ place.distance.m|floatformat:"0" }}m</p>
+        <p>{% trans "Currently playing:" %} {{ checkins.count }} player{{ checkins.count|pluralize }}</p>
+        <p><a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Checkin here" %}</a></p>
     </div>
 {% endfor %}

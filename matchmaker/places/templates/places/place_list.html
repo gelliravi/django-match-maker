@@ -1,12 +1,24 @@
 {% extends "matchmaker/base.html" %}
 {% load i18n %}
+{% load url from future %}
 
 
 {% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Nearby places" %}</h1>
+        <p class="lead">
+            {% url "places_create" as places_create %}
+            {% blocktrans with places_create=places_create %}
+            Here is a list of places near your current position. If your favorite court does not show up here, go there and <a href="{{ places_create }}">add it</a>.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Please note that we can only show places if you accept the geolocation popup of your browser." %}</p>
+    </div>
+</header>
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h1>{% trans "Nearby places" %}</h1>
             <div id="placeList"></div>
         </div>
     </div>
