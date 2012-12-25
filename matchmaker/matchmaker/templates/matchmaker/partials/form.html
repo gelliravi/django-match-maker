@@ -1,0 +1,8 @@
+<fieldset>
+    {% for field in form.visible_fields %}
+        {% include "matchmaker/partials/form_field.html" %}
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+</fieldset>

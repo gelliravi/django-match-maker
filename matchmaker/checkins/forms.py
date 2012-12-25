@@ -20,6 +20,9 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
             self.fields['user_name'] = forms.CharField(
                 max_length=256,
                 label=_('Your name'),
+                help_text=_(
+                    'Give yourself a nickanme, or even better,'
+                    ' <a href="#">create an account</a>'),
             )
         self.add_lat_lng_fields()
 
