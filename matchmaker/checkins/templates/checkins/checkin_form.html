@@ -3,10 +3,21 @@
 
 
 {% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Check-in now" %}</h1>
+        <p class="lead">
+            {% blocktrans with place=place.name %}
+            You are about to checkin at <strong>{{ place }}</strong>. When you do this, other players will be notified that you are here. Your check-in will automatically expire after 90 minutes.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Please note that you can only check-in if you accept the geolocation popup of your browser." %}</p>
+    </div>
+</header>
+
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h1>{% trans "Checkin at" %} {{ place.name }}</h1>
             <form method="post" action=".">
                 {% csrf_token %}
                 {{ form.as_p }}
