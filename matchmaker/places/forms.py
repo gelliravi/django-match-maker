@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.gis.geos import Point
 
-from places.models import Place
+from places.models import Place, PlaceType
 
 
 class FormWithLatLngMixin(object):
@@ -18,7 +18,7 @@ class FormWithLatLngMixin(object):
 class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
     class Meta:
         model = Place
-        exclude = ['point', ]
+        exclude = ['point', 'type', ]
 
     def __init__(self, *args, **kwargs):
         super(PlaceCreateForm, self).__init__(*args, **kwargs)
@@ -29,4 +29,5 @@ class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
             'Please call `is_valid` before calling `save`')
         self.instance.point = Point(
             self.cleaned_data['lng'], self.cleaned_data['lat'])
+        self.instance.type = PlaceType.objects.get(name='Basketball')
         return super(PlaceCreateForm, self).save(*args, **kwargs)

@@ -2,10 +2,15 @@
 from django.test import TestCase
 
 from places.forms import PlaceCreateForm
+from places.tests.factories import PlaceTypeFactory
 
 
 class PlaceCreateFormTestCase(TestCase):
     """Tests for the ``PlaceCreateForm`` form class."""
+    def setUp(self):
+        super(PlaceCreateFormTestCase, self).setUp()
+        self.type = PlaceTypeFactory(name='Basketball')
+
     def test_adds_lat_lng_fields(self):
         """
         When initiated, PlaceCreateForm should add hidden fields for lat/lng.

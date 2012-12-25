@@ -4,7 +4,7 @@ from django.test import TestCase
 from django_libs.tests.factories import UserFactory
 
 from checkins.forms import CheckinCreateForm
-from places.tests.factories import PlaceFactory
+from places.tests.factories import PlaceFactory, PlaceTypeFactory
 
 
 class CheckinCreateFormTestCase(TestCase):
@@ -12,6 +12,7 @@ class CheckinCreateFormTestCase(TestCase):
     longMessage = True
 
     def setUp(self):
+        self.type = PlaceTypeFactory(name='Basketball')
         self.place = PlaceFactory()
         self.data = {
             'user_name': 'Martin',
