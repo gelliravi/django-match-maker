@@ -3,15 +3,26 @@
 
 
 {% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Create new place" %}</h1>
+        <p class="lead">
+            {% blocktrans with place=place.name %}
+            In order to create a new court, just walk to that court, and reload this page. Give it a name and drag the marker onto the playing field.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Please note that you can only create places if you accept the geolocation popup of your browser." %}</p>
+    </div>
+</header>
 <div class="container">
     <div class="row">
         <div class="span12">
             <h1>{% trans "Create place" %}</h1>
-            <form method="post" action=".">
+            <form id="form" method="post" action="./#form">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <div id="mapCanvas" style="width:100%;height:400px;"></div>
-                <input type="submit" class="btn btn-primary" value="Save" />
+                {% include "matchmaker/partials/form.html" %}
+                <p><div id="mapCanvas" style="width:100%;height:400px;"></div></p>
+                <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled"/>
             </form>
         </div>
     </div>

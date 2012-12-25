@@ -8,11 +8,12 @@ function success(position) {
 
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     var myOptions = {
-        zoom: 15,
-        center: latlng,
-        mapTypeControl: true,
-        navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 19
+        ,center: latlng
+        ,mapTypeControl: true
+        ,navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
+        ,mapTypeId: google.maps.MapTypeId.ROADMAP
+        ,streetViewControl: false
     };
 
     var mapcanvas = document.getElementById("mapCanvas")
@@ -28,4 +29,7 @@ function success(position) {
     google.maps.event.addListener(marker,'dragend',function(){
         update_latlng(marker.position.lat(), marker.position.lng());
     });
+
+    $('.btn-primary').prop('disabled', false);
+    $('.btn-primary').val('Create  place');
 }

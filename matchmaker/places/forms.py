@@ -1,6 +1,7 @@
 """Forms for the ``places`` app."""
 from django import forms
 from django.contrib.gis.geos import Point
+from django.utils.translation import ugettext_lazy as _
 
 from places.models import Place, PlaceType
 
@@ -22,6 +23,9 @@ class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PlaceCreateForm, self).__init__(*args, **kwargs)
+        self.fields['name'].help_text = _(
+            'Chose a name that is common among players. Usually a nearby'
+            ' block, school or park would identify a playing field nicely.')
         self.add_lat_lng_fields()
 
     def save(self, *args, **kwargs):
