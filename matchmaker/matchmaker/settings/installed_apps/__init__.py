@@ -20,6 +20,7 @@ DJANGO_APPS = [
 
 EXTERNAL_APPS = [
     'django_extensions',
+    'django_libs',
     'south',
 ]
 

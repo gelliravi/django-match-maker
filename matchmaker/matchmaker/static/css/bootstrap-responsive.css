@@ -1023,3 +1023,6 @@
     overflow: visible !important;
   }
 }
+.bs-docs-social {
+  margin: 0 -20px;
+}

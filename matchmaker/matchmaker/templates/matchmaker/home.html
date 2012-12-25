@@ -3,17 +3,25 @@
 
 
 {% block "main" %}
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            <h1>{% trans "PlayerPointer.com" %}</h1>
-            <p>
-                {% blocktrans %}
-                This app aims to help you to find people in your neighborhood
-                who want to play basketball with you.
-                {% endblocktrans %}
-            </p>
-        </div>
+<div class="jumbotron masthead">
+    <div class="container">
+        <h1 class="fontBrand">Player Pointer</h1>
+        <p class="lead">{% trans "Bored of playing basketball alone? It doesn't have to be like this. Singapore has hundreds of basketball courts and thousands of players. We help you to connect." %}</p>
+        <p><a href="#" class="btn btn-primary btn-large">Create your profile</a></p>
     </div>
+</div>
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li class="tweet-btn">
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://playerpointer.com" data-text="Find players in your neighborhood" data-via="playerpointer">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </li>
+      <li class="follow-btn">
+          <a href="https://twitter.com/playerpointer" class="twitter-follow-button" data-show-count="false">Follow @playerpointer</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </li>
+    </ul>
+  </div>
 </div>
 {% endblock %}

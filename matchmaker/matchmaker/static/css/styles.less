@@ -1,3 +1,85 @@
+// ============================================================================
+// Structure of this stylesheet:
+//
+// * General Styles
+// * General Typography
+// * Jumbotron Masthead Headers
+// * Social Buttons
+// * Google Maps
+// ============================================================================
+
+
+// ============================================================================
+// General Styles
+// ============================================================================
+body {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+
+// ============================================================================
+// General Typography
+// ============================================================================
+.fontBrand {
+    font-family: 'Fugaz One', cursive;
+}
+
+.jumbotronFont {
+    font-size: 72px;
+    line-height: 1;
+}
+
+.jumbotronBtnFont {
+    font-size: 21px;
+}
+
+
+// ============================================================================
+// Jumbotron Masthead Headers
+// ============================================================================
+.jumbotron {
+    margin: 60px 0;
+    text-align: center;
+    h1 {
+        .jumbotronFont;
+    }
+    .btn {
+        .jumbotronBtnFont;
+        padding: 14px 24px;
+    }
+}
+
+
+// ============================================================================
+// Social Buttons
+// ============================================================================
+.bs-docs-social {
+    padding: 15px 0;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.bs-docs-social-buttons {
+    margin-left: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    li {
+        display: inline-block;
+        padding: 5px 8px;
+        line-height: 1;
+        *display: inline;
+        *zoom: 1;
+    }
+}
+
+
+// ============================================================================
+// Google Maps
+// ============================================================================
 #mapCanvas img {
     max-width: none;
 }

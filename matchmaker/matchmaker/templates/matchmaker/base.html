@@ -11,8 +11,8 @@
     <meta name="description" content="{% trans "Find players in your neighborhood for friendly matches." %}">
     <meta name="viewport" content="width=device-width">
 
+    <link href='https://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-    <style type="text/css">body {padding-top:20px;}</style>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
 
     <script src="{{ STATIC_URL }}js/libs/modernizr-2.6.2.min.js"></script>
@@ -23,6 +23,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    {% include "matchmaker/partials/navbar.html" %}
     {% block "main" %}{% endblock %}
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
