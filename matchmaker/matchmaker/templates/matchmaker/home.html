@@ -7,7 +7,7 @@
     <div class="container">
         <h1 class="fontBrand">Player Pointer</h1>
         <p class="lead">{% trans "Bored of playing basketball alone? It doesn't have to be like this. Singapore has hundreds of basketball courts and thousands of players. We help you to connect." %}</p>
-        <p><a href="#" class="btn btn-primary btn-large">Create your profile</a></p>
+        <p><a href="#" class="btn btn-primary btn-large">{% trans "Create your profile" %}</a></p>
     </div>
 </div>
 <div class="bs-docs-social">
@@ -23,5 +23,52 @@
       </li>
     </ul>
   </div>
+</div>
+<div class="container">
+    <div class="marketing">
+        <h1>{% trans "How does it work?" %}</h1>
+        <p class="marketing-byline">{% trans "You just need your phone and three simple steps:" %}</p>
+
+        <div class="row-fluid">
+            <div class="span4">
+                <i class="icon-plus-sign"></i>
+                <h2>{% trans "Step 1: Add a court" %}</h2>
+                <p>{% trans "Get out and walk to your favorite basketball court. Then visit playerpointer.com with your smartphone and add the court to our database. Congratulations! You have just made a great contribution to our community." %}</p>
+            </div>
+            <div class="span4">
+                <i class="icon-map-marker"></i>
+                <h2>{% trans "Step 2: Check-in & play" %}</h2>
+                <p>{% trans "Whenever you play, make it a habit and check-in at your court. Other players will be able to see that you are playing and might join you. You will be checked out automatically after 90 minutes of play." %}</p>
+            </div>
+            <div class="span4">
+                <i class="icon-star"></i>
+                <h2>{% trans "Step 3: Subscribe" %}</h2>
+                <p>{% trans "If you subscribe to your favorite courts, you will get email notifications as soon as players check-in at those courts. You never gonna miss a great game again. " %}</p>
+            </div>
+        </div>
+
+        <hr class="soften">
+
+        <h1>{% trans "This is just the beginning" %}</h1>
+        <p class="marketing-byline">{% trans "Check-ins and subscriptions are just the tip of the ice-berg." %}</p>
+
+        <div class="row-fluid">
+            <div class="span4">
+                <i class="icon-user"></i>
+                <h2>{% trans "Team randomizer" %}</h2>
+                <p>{% trans "Why waste time with <em>Black & White</em>? Player Pointer will soon be able to generate randomized teams once every player is checked-in. It's just a click at a button." %}</p>
+            </div>
+            <div class="span4">
+                <i class="icon-thumbs-up"></i>
+                <h2>{% trans "Skill tracker" %}</h2>
+                <p>{% trans "Players can rate other player's skills or vote for a player of the match after each game. This way the randomizer will slowly learn to create teams that are random, yet fair." %}</p>
+            </div>
+            <div class="span4">
+                <i class="icon-globe"></i>
+                <h2>{% trans "Highscore list" %}</h2>
+                <p>{% trans "With all data in place, we will be able to create a highscore list for your local neighborhood, your district or even the whole town. Wanna stay on top of the game? Gotta play more! ;)" %}</p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
