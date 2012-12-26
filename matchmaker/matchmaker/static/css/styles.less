@@ -136,13 +136,25 @@ body {
 // ============================================================================
 // Google Maps
 // ============================================================================
-#mapCanvas img {
-    max-width: none;
+#mapCanvas {
+    position: absolute;
+    overflow-x: visible;
+    overflow-y: visible;
+    top: 0px;
+    left: 0px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    img {
+        max-width: none;
+    }
 }
 
 
+
 // ============================================================================
-// Google Maps
+// Place List View
 // ============================================================================
 .placeItem {
     background-color: @grayLighter;

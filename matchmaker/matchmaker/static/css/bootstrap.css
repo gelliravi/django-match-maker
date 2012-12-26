@@ -5207,6 +5207,17 @@ body {
   *display: inline;
   *zoom: 1;
 }
+#mapCanvas {
+  position: absolute;
+  overflow-x: visible;
+  overflow-y: visible;
+  top: 0px;
+  left: 0px;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
 #mapCanvas img {
   max-width: none;
 }
