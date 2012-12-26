@@ -31,6 +31,9 @@ function SubmitControl(controlDiv, map) {
 
   google.maps.event.addDomListener(controlUI, 'click', function() {
       $('#mapCanvas').hide();
+      $('body').animate({
+          scrollTop: $('#btnPickPosition').offset().top
+      }, 0);
   });
 }
 
