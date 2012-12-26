@@ -1,0 +1,14 @@
+{% load i18n checkins_tags %}
+{% load url from future %}
+
+{% get_checkins place as checkins %}
+<div class="placeItem {% if place == checked_in_place %}active{% endif %}">
+    <h2>{{ place.name }}</h2>
+    <p>{% trans "Distance:" %} {{ place.distance.m|floatformat:"0" }}m</p>
+    <p>{% trans "Currently playing:" %} {{ checkins.count }} player{{ checkins.count|pluralize }}</p>
+    {% if place == checked_in_place %}
+        <p><a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a></p>
+    {% else %}
+        <p><a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Check-in here" %}</a></p>
+    {% endif %}
+</div>

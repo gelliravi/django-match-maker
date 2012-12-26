@@ -5,13 +5,13 @@
 {% block "main" %}
 <header class="jumbotron subhead" id="overview">
     <div class="container">
-        <h1>{% trans "Check-in now" %}</h1>
+        <h1>{% trans "Check-out now" %}</h1>
         <p class="lead">
             {% blocktrans with place=place.name %}
-            You are about to checkin at <strong>{{ place }}</strong>. When you do this, other players will be notified that you are here. Your check-in will automatically expire after 90 minutes.
+            Very good! By checking out actively you keep the data up to date for other players, which makes the site more reliable.
             {% endblocktrans %}
         </p>
-        <p>{% trans "Please note that you can only check-in if you accept the geolocation popup of your browser." %}</p>
+        <p>{% trans "By the way: We would have checked you out automatically after 90 minutes." %}</p>
     </div>
 </header>
 
@@ -21,7 +21,7 @@
             <form id="form" method="post" action="./#form">
                 {% csrf_token %}
                 {% include "matchmaker/partials/form.html" %}
-                <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled" />
+                <input type="submit" class="btn btn-primary" value="Check-out now" />
                 <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
             </form>
         </div>
@@ -30,7 +30,4 @@
 {% endblock %}
 
 
-{% block "extrajs" %}
-<script src="{{ STATIC_URL }}checkins/js/geo-success-checkin-form.js"></script>
-<script src="{{ STATIC_URL }}places/js/geolocator.js"></script>
-{% endblock %}
+

@@ -1,6 +1,8 @@
 Django Match Maker
 ==================
 
+You can visit a hosted version of this site at https://playerpointer.com
+
 There are literally hundreds of public basketball courts in Singapore. I have
 three in close walking distance, yet I often end up playing all alone. This app
 aims to solve that problem:

@@ -3,7 +3,9 @@ from django.test import TestCase
 
 from django_libs.tests.factories import UserFactory
 
-from checkins.forms import CheckinCreateForm
+from checkins.forms import CheckinCreateForm, CheckoutForm
+from checkins.models import Checkin
+from checkins.tests.factories import CheckinFactory
 from places.tests.factories import PlaceFactory, PlaceTypeFactory
 
 
@@ -24,7 +26,7 @@ class CheckinCreateFormTestCase(TestCase):
         """Should create a checkin when username is given."""
         form = CheckinCreateForm(user=None, place=self.place, data=self.data)
         self.assertTrue(form.is_valid(), msg=(
-            'Erorrs: {0}'.format(form.errors.items())))
+            'Errors: {0}'.format(form.errors.items())))
         instance = form.save()
         self.assertTrue(instance.pk)
 
@@ -36,3 +38,20 @@ class CheckinCreateFormTestCase(TestCase):
             'Erorrs: {0}'.format(form.errors.items())))
         instance = form.save()
         self.assertTrue(instance.pk)
+
+
+class CheckoutFormTestCase(TestCase):
+    """Tests for the ``CheckoutForm`` form class."""
+    longMessage = True
+
+    def test_expires_all_checkins(self):
+        checkin1 = CheckinFactory()
+        checkin2 = CheckinFactory()
+        form = CheckoutForm(user=checkin1.user, data={})
+        self.assertTrue(form.is_valid(), msg=(
+            'Errors: {0}'.format(form.errors.items())))
+        form.save()
+        checkin1 = Checkin.objects.get(pk=checkin1.pk)
+        checkin2 = Checkin.objects.get(pk=checkin2.pk)
+        self.assertTrue(checkin1.expired)
+        self.assertFalse(checkin2.expired)

@@ -1,7 +1,13 @@
 """Tests for the templatetags of the ``checkins`` app."""
 from django.test import TestCase
+from django.contrib.auth.models import AnonymousUser
 
-from checkins.templatetags.checkins_tags import get_checkins
+from django_libs.tests.factories import UserFactory
+
+from checkins.templatetags.checkins_tags import (
+    get_checkins,
+    get_checked_in_place,
+)
 from checkins.tests.factories import CheckinFactory
 
 
@@ -28,3 +34,26 @@ class GetCheckinsTestCase(TestCase):
 
         result = get_checkins(checkin1_1.place)
         self.assertEqual(result.count(), 2)
+
+
+class GetCheckedInPlace(TestCase):
+    """Tests for the ``get_checked_in_place`` templatetag."""
+    longMessage = True
+
+    def test_tag_with_user(self):
+        """Should return the place where the given user is checked-in."""
+        checkin = CheckinFactory()
+        result = get_checked_in_place(checkin.user)
+        self.assertEqual(result, checkin.place)
+
+    def test_tag_without_checkin(self):
+        """Should return `None` if the user is not checked-in anywhere."""
+        user = UserFactory()
+        result = get_checked_in_place(user)
+        self.assertEqual(result, None)
+
+    def test_tag_without_user(self):
+        """Should return `None` if the user is anonymous."""
+        user = AnonymousUser()
+        result = get_checked_in_place(user)
+        self.assertEqual(result, None)

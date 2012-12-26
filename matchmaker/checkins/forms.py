@@ -27,6 +27,14 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
         self.add_lat_lng_fields()
 
     def save(self, *args, **kwargs):
+        """
+        Creates a new ``Checkin`` for.
+
+        This can be done for anonymous users or for real users.
+        Since we call ``checkin.save()`` here, the ``save()`` override will
+        take care of expiring older checkins for the given user.
+
+        """
         checkin = Checkin()
         checkin.place = self.place
         if self.user:
@@ -39,3 +47,14 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
         )
         checkin.save()
         return checkin
+
+
+class CheckoutForm(forms.Form):
+    """Form that expires the user's check-ins."""
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(CheckoutForm, self).__init__(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        """Expires all checkins for the given user."""
+        Checkin.objects.filter(user=self.user).update(expired=True)
