@@ -10,7 +10,7 @@ class CheckinCreateView(FormView):
     """Allows a user to checkin at a place."""
     form_class = CheckinCreateForm
     template_name = 'checkins/checkin_form.html'
-    success_url = '/'
+    success_url = '/places/'
 
     def dispatch(self, request, *args, **kwargs):
         try:
