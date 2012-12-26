@@ -2,8 +2,11 @@
 # Django related
 # =============================================================================
 -e git+git://github.com/django/django.git@d19109fd37e75ccf29d2ca64370102753dbc7c5b#egg=django
+-e git+git://github.com/pinax/django-mailer.git@5552cbab5568d3e4c302852ba4c69c36264fd1df#egg=mailer
 django-extensions==1.0.2
 django-libs==0.11
+django-registration==0.8
+django-registration-email==0.2.3
 South==0.7.6
 
 

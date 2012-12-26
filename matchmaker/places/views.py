@@ -32,7 +32,7 @@ class PlaceListView(TemplateView):
                 float(self.request.POST.get('lng')),
                 float(self.request.POST.get('lat')),)
             places = Place.objects.filter(
-                point__distance_lte=(pnt, D(km=2))).distance(pnt).order_by(
+                point__distance_lte=(pnt, D(km=5))).distance(pnt).order_by(
                     'distance')
             ctx.update({
                 'places': places,

@@ -21,6 +21,9 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'django_extensions',
     'django_libs',
+    'mailer',
+    'registration',
+    'registration_email',
     'south',
 ]
 
@@ -31,3 +34,5 @@ INTERNAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
+
+from .registration_settings import *  # NOQA

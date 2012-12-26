@@ -1,0 +1,18 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block "main" %}
+<div class="container pushTop">
+    <div class="row">
+        <div class="span12">
+            <h2>{% trans "Registration form" %}</h2>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {% include "matchmaker/partials/form.html" %}
+                <input type="submit" class="btn btn-primary" value="{% trans "Register now" %}">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

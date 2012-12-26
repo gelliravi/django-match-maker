@@ -1,0 +1,15 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block "main" %}
+<div class="container pushTop">
+    <div class="row">
+        <div class="span12">
+            <h2>{% trans "Registration complete" %}</h2>
+            <p>{% trans "Thank you for your registration!" %}</p>
+            <p>{% trans "You can login and start playing now :)" %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

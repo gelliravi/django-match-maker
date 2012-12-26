@@ -1,4 +1,4 @@
-{% load libs_tags %}
+{% load i18n libs_tags %}
 {% load url from future %}
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -11,9 +11,18 @@
             <a class="brand fontBrand" href="/">Player Pointer</a>
             <div class="nav-collapse collapse" style="height: 0px;">
                 <ul class="nav">
-                    <li class="{% navactive request "/" exact=1 %}"><a href="/">Home</a></li>
-                    {% url "places_list" as places_list%}
-                    <li class="{% navactive request places_list exact=1 %}"><a href="{{ places_list }}">Places</a></li>
+                    <li class="{% navactive request "/" exact=1 %}"><a href="/">{% trans "Home" %}</a></li>
+                    {% url "places_list" as places_list %}
+                    <li class="{% navactive request places_list exact=1 %}"><a href="{{ places_list }}">{% trans "Places" %}</a></li>
+                    {% if user.is_authenticated %}
+                        {% url "auth_logout" as auth_logout %}
+                        <li class="{% navactive request auth_logout exact=1 %}"><a href="{{ auth_logout }}">{% trans "Logout" %}</a></li>
+                    {% else %}
+                        {% url "auth_login" as auth_login %}
+                        {% url "registration_register" as registration_register %}
+                        <li class="{% navactive request auth_login exact=1 %}"><a href="{{ auth_login }}">{% trans "Login" %}</a></li>
+                        <li class="{% navactive request registration_register exact=1 %}"><a href="{{ registration_register }}">{% trans "Register" %}</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

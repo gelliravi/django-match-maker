@@ -1,13 +1,18 @@
 {% extends "matchmaker/base.html" %}
 {% load i18n %}
+{% load url from future %}
 
 
 {% block "main" %}
 <div class="jumbotron masthead">
     <div class="container">
         <h1 class="fontBrand">Player Pointer</h1>
-        <p class="lead">{% trans "Bored of playing basketball alone? It doesn't have to be like this. <br />Singapore has hundreds of basketball courts and thousands of players. We help you to connect." %}</p>
-        <p><a href="#" class="btn btn-primary btn-large">{% trans "Create your profile" %}</a></p>
+        <p class="lead">{% trans "Bored of playing basketball alone? It doesn't have to be like this. <br />Singapore has hundreds of basketball courts and thousands of players. Let's meetup and play!" %}</p>
+        {% if user.is_authenticated %}
+            <p><a href="{% url "places_list" %}" class="btn btn-primary btn-large">{% trans "Check-in & Play" %}</a></p>
+        {% else %}
+            <p><a href="{% url "registration_register" %}" class="btn btn-primary btn-large">{% trans "Create your profile" %}</a></p>
+        {% endif %}
     </div>
 </div>
 <div class="bs-docs-social">

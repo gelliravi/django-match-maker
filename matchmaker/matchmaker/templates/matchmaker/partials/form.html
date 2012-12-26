@@ -1,4 +1,9 @@
 <fieldset>
+    {% if form.non_field_errors %}
+        <div class="control-group error">
+            <span class="help-block">{{ form.non_field_errors|safe }}</span>
+        </div>
+    {% endif %}
     {% for field in form.visible_fields %}
         {% include "matchmaker/partials/form_field.html" %}
     {% endfor %}
