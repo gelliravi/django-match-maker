@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from registration.signals import user_registered
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.signals import pre_update, socialauth_registered
-from user_profile.constants import TIMEZONE_CHOICES
+from user_profile.constants import GENDER_CHOICES, TIMEZONE_CHOICES
 
 
 class UserProfile(models.Model):
@@ -39,6 +39,7 @@ class UserProfile(models.Model):
     gender = models.CharField(
         max_length=32,
         verbose_name=_('Gender'),
+        choices=GENDER_CHOICES,
         blank=True,
     )
 

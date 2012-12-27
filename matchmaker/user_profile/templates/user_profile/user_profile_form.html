@@ -1,0 +1,28 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Your Profile" %}</h1>
+        <p class="lead">
+            {% blocktrans %}
+            This is your user profile. We will gradually ask for more information in order to create better statistics and a greater community.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "You should at least enter a username that will reflect you on the highscore list and during matches." %}</p>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <form id="form" method="post" action="./#form">
+                {% csrf_token %}
+                {% include "matchmaker/partials/form.html" %}
+                <input type="submit" class="btn btn-primary" value="Save profile" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

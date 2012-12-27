@@ -1,5 +1,7 @@
 """django-registration and django-social-auth related settings."""
 
+AUTH_PROFILE_MODULE = 'user_profile.UserProfile'
+
 AUTHENTICATION_BACKENDS = (
     'registration_email.auth.EmailBackend',
     'social_auth.backends.facebook.FacebookBackend',

@@ -17,6 +17,8 @@
                     {% if user.is_authenticated %}
                         {% url "auth_logout" as auth_logout %}
                         <li class="{% navactive request auth_logout exact=1 %}"><a href="{{ auth_logout }}">{% trans "Logout" %}</a></li>
+                        {% url "user_profile_update" as user_profile_update %}
+                        <li class="{% navactive request user_profile_update exact=1 %}"><a href="{{ user_profile_update }}">{% trans "Profile" %}</a></li>
                     {% else %}
                         {% url "auth_login" as auth_login %}
                         {% url "registration_register" as registration_register %}
