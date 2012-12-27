@@ -14,7 +14,10 @@ class UserProfileUpdateView(FormView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.user_profile = request.user.get_profile()
+        try:
+            self.user_profile = request.user.get_profile()
+        except UserProfile.DoesNotExist:
+            self.user_profile = UserProfile.objects.create(user=request.user)
         return super(UserProfileUpdateView, self).dispatch(
             request, *args, **kwargs)
 
