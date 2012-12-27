@@ -5,7 +5,7 @@
 {% block "main" %}
 <div class="container pushTop">
     <div class="row">
-        <div class="span12">
+        <div class="span6">
             <h2>{% trans "Login" %}</h2>
             <form method="post" action=".">
                 {% csrf_token %}
@@ -17,6 +17,12 @@
                 <a href="{% url "auth_password_reset" %}">{% trans "Forgot your password?" %}</a>
                 <a href="{% url "registration_register" %}">{% trans "Register a new account" %}</a>?
             </p>
+        </div>
+        <div class="span6">
+            <h2>{% trans "Login with Facebook" %}</h2>
+            <p>{% trans "No worries, we will never post anything to your timelime unless you tell us to do so." %}</p>
+            <p>{% trans "If you don't want to rember yet another password, login with Facebook would be a good option for you." %}</p>
+            <a class="btn btn-primary" href="{% url "socialauth_begin" backend="facebook" %}?{{ redirect_querystring }}">{% trans "Login with Facebook" %}</a>
         </div>
     </div>
 </div>

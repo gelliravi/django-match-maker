@@ -24,10 +24,12 @@ EXTERNAL_APPS = [
     'mailer',
     'registration',
     'registration_email',
+    'social_auth',
     'south',
 ]
 
 INTERNAL_APPS = [
+    'user_profile',
     'matchmaker',
     'places',
     'checkins',

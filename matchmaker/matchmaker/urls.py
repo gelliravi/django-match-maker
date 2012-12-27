@@ -16,6 +16,7 @@ urlpatterns = patterns(
     url(r'^checkins/', include('checkins.urls')),
     url(r'^subscriptions/', include('subscriptions.urls')),
     url(r'^accounts/', include('registration_email.backends.simple.urls')),
+    url(r'^accounts/', include('social_auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^prototype/(?P<template_path>.*)$',
         RapidPrototypingView.as_view(),
