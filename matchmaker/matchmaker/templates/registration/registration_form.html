@@ -5,13 +5,19 @@
 {% block "main" %}
 <div class="container pushTop">
     <div class="row">
-        <div class="span12">
+        <div class="span6">
             <h2>{% trans "Registration form" %}</h2>
             <form method="post" action=".">
                 {% csrf_token %}
                 {% include "matchmaker/partials/form.html" %}
                 <input type="submit" class="btn btn-primary" value="{% trans "Register now" %}">
             </form>
+        </div>
+        <div class="span6">
+            <h2>{% trans "Register with Facebook" %}</h2>
+            <p>{% trans "No worries, we will never post anything to your timelime unless you tell us to do so." %}</p>
+            <p>{% trans "If you don't want to rember yet another password, login with Facebook would be a good option for you." %}</p>
+            <a class="btn btn-primary" href="{% url "socialauth_begin" backend="facebook" %}?{{ redirect_querystring }}">{% trans "Register with Facebook" %}</a>
         </div>
     </div>
 </div>
