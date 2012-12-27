@@ -31,6 +31,7 @@ INTERNAL_APPS = [
     'matchmaker',
     'places',
     'checkins',
+    'subscriptions',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS

@@ -1,4 +1,4 @@
-{% load i18n checkins_tags %}
+{% load i18n checkins_tags subscriptions_tags %}
 {% load url from future %}
 
 {% get_checkins place as checkins %}
@@ -10,5 +10,9 @@
         <p><a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a></p>
     {% else %}
         <p><a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Check-in here" %}</a></p>
+    {% endif %}
+    {% if user.is_authenticated %}
+        {% get_ctype place as ctype %}
+        <p><a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Subscribe" %}</a></p>
     {% endif %}
 </div>

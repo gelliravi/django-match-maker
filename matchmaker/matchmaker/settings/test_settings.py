@@ -4,7 +4,10 @@ from matchmaker.settings import *  # NOQA
 
 PREPEND_WWW = False
 
-INSTALLED_APPS.append('django_nose')
+INSTALLED_APPS += [
+    'django_nose',
+    'subscriptions.tests.test_app',
+]
 
 
 DATABASES = {

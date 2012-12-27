@@ -14,6 +14,7 @@ urlpatterns = patterns(
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^places/', include('places.urls')),
     url(r'^checkins/', include('checkins.urls')),
+    url(r'^subscriptions/', include('subscriptions.urls')),
     url(r'^accounts/', include('registration_email.backends.simple.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^prototype/(?P<template_path>.*)$',

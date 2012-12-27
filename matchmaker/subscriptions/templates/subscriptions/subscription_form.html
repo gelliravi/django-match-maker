@@ -1,0 +1,28 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Subscribe" %}</h1>
+        <p class="lead">
+            {% blocktrans with content_object=content_object %}
+            You are about to subscribe to <strong>{{ content_object }}</strong>. This means you will get an email when players check-in to this place.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "If it gets too much, you can un-subscribe at any time." %}</p>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <form id="form" method="post" action="./#form">
+                {% csrf_token %}
+                {% include "matchmaker/partials/form.html" %}
+                <input type="submit" class="btn btn-primary" value="Subscribe now" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
