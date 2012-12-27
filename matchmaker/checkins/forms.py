@@ -17,14 +17,25 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
             self.user = user
         else:
             self.user = None
-            self.fields['user_name'] = forms.CharField(
-                max_length=256,
-                label=_('Your name'),
-                help_text=_(
-                    'Give yourself a nickanme, or even better,'
-                    ' <a href="#">create an account</a>'),
-            )
+            self._add_user_name_field()
         self.add_lat_lng_fields()
+
+    def _add_user_name_field(self, help_text=None):
+        if help_text is None:
+            help_text = _(
+                'Give yourself a nickanme, or even better,'
+                ' <a href="/accounts/register/">create an account</a>'
+            ),
+
+        self.fields['user_name'] = forms.CharField(
+            max_length=256,
+            label=_('Your name'),
+            help_text=help_text,
+        )
+
+    def pre_save(self, *args, **kwargs):
+        """Can be overridden by forms inheriting this form."""
+        return
 
     def save(self, *args, **kwargs):
         """
@@ -35,6 +46,7 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
         take care of expiring older checkins for the given user.
 
         """
+        self.pre_save(*args, **kwargs)
         checkin = Checkin()
         checkin.place = self.place
         if self.user:

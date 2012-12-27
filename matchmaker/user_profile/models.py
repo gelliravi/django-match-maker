@@ -28,6 +28,14 @@ class UserProfile(models.Model):
         verbose_name=_('User'),
     )
 
+    display_name = models.CharField(
+        max_length=256,
+        verbose_name=_('Display name'),
+        help_text=_(
+            'This is the name that shows up when you check-in to a place.'),
+        blank=True,
+    )
+
     timezone = models.CharField(
         max_length=512,
         verbose_name=_('Timezone'),
