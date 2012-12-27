@@ -3,11 +3,31 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-from django_libs.utils_email import send_email
+from django.template.loader import render_to_string
 
 from checkins.models import Checkin
 from subscriptions.models import Subscription
+
+
+def send_mail(subject, message, from_email, recipient_list, bcc_recipient_list,
+              priority="medium", fail_silently=False, auth_user=None,
+              auth_password=None):
+    from django.utils.encoding import force_unicode
+    from mailer import PRIORITY_MAPPING
+    from mailer.models import make_message
+
+    priority = PRIORITY_MAPPING[priority]
+
+    subject = force_unicode(subject)
+    message = force_unicode(message)
+
+    make_message(subject=subject,
+                 body=message,
+                 from_email=from_email,
+                 to=recipient_list,
+                 bcc=bcc_recipient_list,
+                 priority=priority).save()
+    return 1
 
 
 @receiver(post_save, sender=Checkin)
@@ -23,15 +43,18 @@ def send_checkin_notifications(sender, **kwargs):
             recipients.append(subscription.user.email)
 
         if recipients:
-            send_email(
-                request={},
-                extra_context={'place': instance.place, },
-                subject_template=(
-                    'matchmaker/email/checkin_notification_subject.txt'),
-                body_template_plain=(
-                    'matchmaker/email/checkin_notification_body_plain.txt'),
-                body_template=(
-                    'matchmaker/email/checkin_notification_body.html'),
+            context = {'place': instance.place, }
+            subject = render_to_string(
+                'matchmaker/email/checkin_notification_subject.txt', context)
+            subject = ''.join(subject.splitlines())
+            message = render_to_string(
+                'matchmaker/email/checkin_notification_body_plain.txt',
+                context)
+
+            send_mail(
+                subject=subject,
+                message=message,
                 from_email=settings.FROM_EMAIL,
-                recipients=recipients,
+                recipient_list=[],
+                bcc_recipient_list=recipients,
             )

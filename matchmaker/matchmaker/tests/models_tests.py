@@ -24,4 +24,4 @@ class SendCheckinNotificationsTestCase(TestCase):
 
         CheckinFactory(place=place)
         message = Message.objects.all()[0]
-        self.assertEqual(len(message.to_addresses), 2)
+        self.assertEqual(len(message.email.bcc), 2)
