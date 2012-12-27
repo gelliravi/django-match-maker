@@ -1,0 +1,10 @@
+Hi there,
+
+a player has just checked in at {{ place.name }}.
+
+How about getting out and playing some basketball right now? :)
+
+You can check the places around you at https://playerpointer.com/places
+
+Cheers,
+PlayerPointer.com

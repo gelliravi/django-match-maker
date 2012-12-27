@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load url from future %}
+<p>{% trans "Hi there," %}</p>
+<p>{% blocktrans with place_name=place.name %}a player has just checked in at {{ place_name }}.{% endblocktrans %}</p>
+
+<p>{% trans "How about getting out and playing some basketball right now? :)" %}</p>
+
+<p>{% trans "You can check the places around you at https://playerpointer.com/places" %}</p>
+<br />
+<p>
+    {% trans "Cheers," %}<br />
+    {% trans "PlayerPointer.com" %}
+</p>
