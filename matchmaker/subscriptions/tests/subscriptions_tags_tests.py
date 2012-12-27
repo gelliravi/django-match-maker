@@ -4,6 +4,7 @@ from django.test import TestCase
 
 from subscriptions.templatetags.subscriptions_tags import (
     get_ctype,
+    get_subscribers,
     is_subscribed,
 )
 from subscriptions.tests.factories import (
@@ -19,6 +20,20 @@ class GetCtypeTestCase(TestCase):
         ctype = ContentType.objects.get_for_model(dummy)
         result = get_ctype(dummy)
         self.assertEqual(result, ctype)
+
+
+class GetSubscribersTestCase(TestCase):
+    """Tests for the ``get_subscribers`` templatetag."""
+    def test_tag(self):
+        # Two subscriptions for the same thing
+        sub1 = SubscriptionFactory()
+        SubscriptionFactory(content_object=sub1.content_object)
+
+        # One subscription for another thing
+        SubscriptionFactory()
+
+        result = get_subscribers(sub1.content_object)
+        self.assertEqual(result.count(), 2)
 
 
 class IsSubscribedTestCase(TestCase):

@@ -2,10 +2,12 @@
 {% load url from future %}
 
 {% get_checkins place as checkins %}
+{% get_subscribers place as subscribers %}
 <div class="placeItem {% if place == checked_in_place %}active{% endif %}">
     <h2>{{ place.name }}</h2>
     <p>{% trans "Distance:" %} {{ place.distance.m|floatformat:"0" }}m</p>
     <p>{% trans "Currently playing:" %} {{ checkins.count }} player{{ checkins.count|pluralize }}</p>
+    <p>{% trans "Subscribers:" %} {{ subscribers.count }} player{{ subscribers.count|pluralize }}</p>
     {% if place == checked_in_place %}
         <p><a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a></p>
     {% else %}
