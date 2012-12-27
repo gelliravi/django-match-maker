@@ -6,7 +6,10 @@ from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import FormView
 
-from subscriptions.forms import SubscriptionCreateForm
+from subscriptions.forms import (
+    SubscriptionCreateForm,
+    SubscriptionDeleteForm,
+)
 
 
 class SubscriptionCreateView(FormView):
@@ -51,3 +54,9 @@ class SubscriptionCreateView(FormView):
             'content_object': self.content_object,
         })
         return kwargs
+
+
+class SubscriptionDeleteView(SubscriptionCreateView):
+    """View that un-subscribes a ``User`` from any thing."""
+    form_class = SubscriptionDeleteForm
+    template_name = 'subscriptions/subscription_delete.html'

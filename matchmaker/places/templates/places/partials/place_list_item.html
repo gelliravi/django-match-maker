@@ -13,6 +13,11 @@
     {% endif %}
     {% if user.is_authenticated %}
         {% get_ctype place as ctype %}
-        <p><a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Subscribe" %}</a></p>
+        {% is_subscribed user place as user_is_subscribed %}
+        {% if user_is_subscribed %}
+            <p><a class="btn" href="{% url "subscriptions_delete" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Un-subscribe" %}</a></p>
+        {% else %}
+            <p><a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Subscribe" %}</a></p>
+        {% endif %}
     {% endif %}
 </div>

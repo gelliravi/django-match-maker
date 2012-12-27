@@ -12,15 +12,36 @@ class SubscriptionCreateForm(forms.Form):
         self.ctype = ContentType.objects.get_for_model(self.content_object)
         super(SubscriptionCreateForm, self).__init__(*args, **kwargs)
 
-    def save(self, *args, **kwargs):
-        """Adds a subscription for the given user to the given object."""
+    def _get_method_kwargs(self):
+        """
+        Helper method. Returns kwargs needed to filter the correct object.
+
+        Can also be used to create the correct object.
+
+        """
         method_kwargs = {
             'user': self.user,
             'content_type': self.ctype,
             'object_id': self.content_object.pk,
         }
+        return method_kwargs
+
+    def save(self, *args, **kwargs):
+        """Adds a subscription for the given user to the given object."""
+        method_kwargs = self._get_method_kwargs()
         try:
             subscription = Subscription.objects.get(**method_kwargs)
         except Subscription.DoesNotExist:
             subscription = Subscription.objects.create(**method_kwargs)
         return subscription
+
+
+class SubscriptionDeleteForm(SubscriptionCreateForm):
+    def save(self, *args, **kwargs):
+        """Removes a subscription for the given user from the given object."""
+        method_kwargs = self._get_method_kwargs()
+        try:
+            subscription = Subscription.objects.get(**method_kwargs)
+        except Subscription.DoesNotExist:
+            return
+        subscription.delete()

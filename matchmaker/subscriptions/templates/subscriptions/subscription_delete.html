@@ -5,13 +5,17 @@
 {% block "main" %}
 <header class="jumbotron subhead" id="overview">
     <div class="container">
-        <h1>{% trans "Subscribe" %}</h1>
+        <h1>{% trans "Un-subscribe" %}</h1>
         <p class="lead">
             {% blocktrans with content_object=content_object %}
-            You are about to subscribe to <strong>{{ content_object }}</strong>. This means you will get an email when players check-in to this place.
+            You are about to un-subscribe from <strong>{{ content_object }}</strong>. This means you will no longer get emails when players check-in to this place.
             {% endblocktrans %}
         </p>
-        <p>{% trans "If it gets too much, you can un-subscribe at any time." %}</p>
+        <p>
+            {% blocktrans %}
+            Maybe you can give us feedback on our <a href="https://www.facebook.com/playerpointer">Facebook group</a> why you decided to unsubscribe? We really want to make sure that this service is useful to everyone.
+            {% endblocktrans %}
+        </p>
     </div>
 </header>
 <div class="container">
@@ -20,7 +24,7 @@
             <form id="form" method="post" action="./#form">
                 {% csrf_token %}
                 {% include "matchmaker/partials/form.html" %}
-                <input type="submit" class="btn btn-primary" value="Subscribe now" />
+                <input type="submit" class="btn btn-danger" value="Un-subscribe now" />
                 <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
             </form>
         </div>
