@@ -14,6 +14,7 @@ class CheckinCreateFormTestCase(TestCase):
     longMessage = True
 
     def setUp(self):
+        super(CheckinCreateFormTestCase, self).setUp()
         self.type = PlaceTypeFactory(name='Basketball')
         self.place = PlaceFactory()
         self.data = {
