@@ -19,6 +19,12 @@
 <div class="container">
     <div class="row">
         <div class="span12">
+            <ul class="nav nav-tabs">
+                <li class="{% if filter == "nearby" %}active{% endif %}"><a href="{% url "places_list" %}">Places near you</a></li>
+                <li class="{% if filter == "all" %}active{% endif %}"><a href="{% url "places_list" %}?filter=all">All places</a></li>
+            </ul>
+        </div>
+        <div class="span12">
             <div id="placeList"></div>
         </div>
     </div>

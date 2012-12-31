@@ -5,7 +5,7 @@ from django_libs.views import RapidPrototypingView
 
 from checkins.views import CheckinCreateView
 from matchmaker.forms import CustomCheckinCreateForm
-from matchmaker.views import HomeView
+from matchmaker.views import HomeView, CustomPlaceListView
 
 
 admin.autodiscover()
@@ -14,6 +14,9 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^places/$',
+        CustomPlaceListView.as_view(),
+        name='places_list',),
     url(r'^places/', include('places.urls')),
     url(r'^checkins/create/(?P<place_pk>\d+)/$',
         CheckinCreateView.as_view(

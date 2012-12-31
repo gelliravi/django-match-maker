@@ -1,4 +1,7 @@
-"""Signal handlers for the ``matchmaker`` app."""
+"""
+Signal handlers and custom models and managers for the ``matchmaker`` app.
+
+"""
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save
@@ -6,7 +9,25 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 
 from checkins.models import Checkin
+from places.models import Place, PlaceManager
 from subscriptions.models import Subscription
+
+
+class CustomPlaceManager(PlaceManager):
+    """
+    PlaceManager with some extra methods needed by the matchmaker project.
+
+    """
+    def get_active(self):
+        return self.get_query_set()
+
+
+class CustomPlace(Place):
+    """
+    Custom ``Place`` model with extra methods needed by the matchmaker project.
+
+    """
+    objects = CustomPlaceManager()
 
 
 def send_mail(subject, message, from_email, recipient_list, bcc_recipient_list,
