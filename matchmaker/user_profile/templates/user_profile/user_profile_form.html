@@ -11,7 +11,7 @@
             This is your user profile. We will gradually ask for more information in order to create better statistics and a greater community.
             {% endblocktrans %}
         </p>
-        <p>{% trans "You should at least enter a username that will reflect you on the highscore list and during matches." %}</p>
+        <p>{% trans "You should select a unique username and a nice display name that will reflect you on the highscore list and during matches." %}</p>
     </div>
 </header>
 <div class="container">
@@ -19,6 +19,16 @@
         <div class="span12">
             <form id="form" method="post" action="./#form">
                 {% csrf_token %}
+                <div class="control-group {% if field.errors %}error{% endif %}">
+                    <label>{% trans "Username" %}</label>
+                    {% if not form.instance.username %}
+                    <a class="btn" href="{% url "user_profile_username_update" %}">Select your username</a>
+                    <span class="help-block">{% trans "Secure your unique username in order to share your profile with your friends." %}</span>
+                    {% else %}
+                        <input type="text" value="{{ form.instance.username }}" disabled="disabled"/>
+                        <span class="help-block">{% trans "This is the name that shows up in the URL when you share your profile with your friends." %}</span>
+                    {% endif %}
+                </div>
                 {% include "matchmaker/partials/form.html" %}
                 <input type="submit" class="btn btn-primary" value="Save profile" />
             </form>

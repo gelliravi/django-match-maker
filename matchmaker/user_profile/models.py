@@ -36,6 +36,12 @@ class UserProfile(models.Model):
         blank=True,
     )
 
+    username = models.SlugField(
+        max_length=32,
+        verbose_name=_('Username'),
+        blank=True,
+    )
+
     timezone = models.CharField(
         max_length=512,
         verbose_name=_('Timezone'),

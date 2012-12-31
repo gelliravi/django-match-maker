@@ -30,7 +30,7 @@ class CreateUserTestCase(TestCase):
             resp,
             {'user': User.objects.get(username='Foo'), 'is_new': True},
             msg=('Should respond the user instance plus "new"-notification.'
-            'Response was {0}'.format(resp)))
+                 'Response was {0}'.format(resp)))
 
     """Tests for the ``get_username`` function."""
     def test_get_username(self):

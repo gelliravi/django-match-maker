@@ -1,0 +1,29 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Select Your Username" %}</h1>
+        <p class="lead">
+            {% blocktrans %}
+            Chose well: Once chosen, you cannot change your username any more. <br />Your username allows you yo share your profile with your friends using a nice URL like <code>playerpointer.com/u/yourname/</code>.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Note: The username can only consist of letters, numbers, underscores and dash (a-zA-Z0-9_-). It cannot be longer than 32 characters." %}</p>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <form id="form" method="post" action="./#form">
+                {% csrf_token %}
+                {% include "matchmaker/partials/form.html" %}
+                <input type="submit" class="btn btn-primary" value="Save username" />
+                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
