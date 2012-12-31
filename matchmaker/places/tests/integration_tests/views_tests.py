@@ -13,7 +13,24 @@ class PlaceCreateViewTestCase(ViewTestMixin, TestCase):
         return 'places_create'
 
     def test_view(self):
-        """PlaceCreateView should be callable when anonymous."""
+        """Should be callable when anonymous."""
+        self.should_be_callable_when_anonymous()
+
+
+class PlaceDetailViewTestCase(ViewTestMixin, TestCase):
+    """Test for the ``PlaceDetailView`` view class."""
+    def setUp(self):
+        super(PlaceDetailViewTestCase, self).setUp()
+        self.place = PlaceFactory()
+
+    def get_view_name(self):
+        return 'places_detail'
+
+    def get_view_kwargs(self):
+        return {'pk': self.place.pk, }
+
+    def test_view(self):
+        """Should be callable when anonymous."""
         self.should_be_callable_when_anonymous()
 
 

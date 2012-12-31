@@ -22,12 +22,36 @@ class CustomPlaceManager(PlaceManager):
         return self.get_query_set()
 
 
-class CustomPlace(Place):
+class CustomCheckin(Checkin):
     """
-    Custom ``Place`` model with extra methods needed by the matchmaker project.
+    Custom Checkin model with extra methods needed by the matchmaker project.
 
     """
+    class Meta:
+        proxy = True
+
+    def get_name(self):
+        """
+        Returns the name of the user or nickname of an anonymous user.
+
+        """
+        if self.user:
+            return self.user.get_profile().display_name
+        return self.user_name
+
+
+class CustomPlace(Place):
+    """
+    Custom Place model with extra methods needed by the matchmaker project.
+
+    """
+    class Meta:
+        proxy = True
+
     objects = CustomPlaceManager()
+
+    def get_checkins(self):
+        return CustomCheckin.objects.filter(place=self, expired=False)
 
 
 def send_mail(subject, message, from_email, recipient_list, bcc_recipient_list,

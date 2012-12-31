@@ -1,0 +1,33 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{{ place.name }}</h1>
+        <p class="lead">
+            {% blocktrans with place=place.name %}
+            The detail view of this place allows you to see who is currently checked-in. <br />
+            You can also add more anonymous players to the place. This can be useful if someone doesn't have an account, yet or didn't bring a smartphone.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Note: When you add anonymous players, they will get checked-out after 90 minutes. We will not save any statistics for them." %}</p>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h2>{% trans "Currently checked-in" %}</h2>
+            {% for checkin in place.get_checkins %}
+                <div>
+                    <strong>{{ checkin.get_name }}</strong>
+                    (since {{ checkin.time|timesince }})
+                </div>
+            {% empty %}
+                <p>{% trans "Sorry, no one here at the moment :(" %}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

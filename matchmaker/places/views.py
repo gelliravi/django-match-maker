@@ -1,6 +1,6 @@
 """Views of the ``places`` app."""
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
 from places.forms import PlaceCreateForm
 from places.models import Place
@@ -11,6 +11,11 @@ class PlaceCreateView(CreateView):
     form_class = PlaceCreateForm
     model = Place
     success_url = '/'
+
+
+class PlaceDetailView(DetailView):
+    """Allows to see details about a place."""
+    model = Place
 
 
 class PlaceListView(ListView):

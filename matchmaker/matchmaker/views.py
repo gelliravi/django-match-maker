@@ -3,11 +3,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 from places.models import Place
-from places.views import PlaceListView
+from places.views import PlaceDetailView, PlaceListView
+from matchmaker.models import CustomPlace
 
 
 class HomeView(TemplateView):
     template_name = 'matchmaker/home.html'
+
+
+class CustomPlaceDetailView(PlaceDetailView):
+    """
+    PlaceDetailView with extra functionality needed by the matchmaker project.
+
+    """
+    context_object_name = 'place'
+    model = CustomPlace
 
 
 class CustomPlaceListView(PlaceListView):
