@@ -8,18 +8,8 @@
     <p>{% trans "Distance:" %} {{ place.distance.m|floatformat:"0" }}m</p>
     <p>{% trans "Currently playing:" %} {{ checkins.count }} player{{ checkins.count|pluralize }}</p>
     <p>{% trans "Subscribers:" %} {{ subscribers.count }} player{{ subscribers.count|pluralize }}</p>
-    {% if place == checked_in_place %}
-        <p><a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a></p>
-    {% else %}
-        <p><a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Check-in here" %}</a></p>
-    {% endif %}
+    {% include "checkins/partials/checkin_button.html" %}
     {% if user.is_authenticated %}
-        {% get_ctype place as ctype %}
-        {% is_subscribed user place as user_is_subscribed %}
-        {% if user_is_subscribed %}
-            <p><a class="btn" href="{% url "subscriptions_delete" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Un-subscribe" %}</a></p>
-        {% else %}
-            <p><a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=place.pk %}">{% trans "Subscribe" %}</a></p>
-        {% endif %}
+        {% include "subscriptions/partials/subscribe_button.html" %}
     {% endif %}
 </div>

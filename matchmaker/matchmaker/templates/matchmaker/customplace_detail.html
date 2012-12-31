@@ -1,4 +1,5 @@
 {% extends "matchmaker/base.html" %}
+{% load checkins_tags %}
 {% load i18n %}
 
 
@@ -15,19 +16,32 @@
         <p>{% trans "Note: When you add anonymous players, they will get checked-out after 90 minutes. We will not save any statistics for them." %}</p>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            <h2>{% trans "Currently checked-in" %}</h2>
-            {% for checkin in place.get_checkins %}
-                <div>
-                    <strong>{{ checkin.get_name }}</strong>
-                    (since {{ checkin.time|timesince }})
-                </div>
-            {% empty %}
-                <p>{% trans "Sorry, no one here at the moment :(" %}</p>
-            {% endfor %}
+<section class="subhead">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>{% trans "Currently checked-in" %}</h2>
+                {% for checkin in place.get_checkins %}
+                    <p>
+                        <strong>{{ checkin.get_name }}</strong>
+                        (since {{ checkin.time|timesince }})
+                    </p>
+                {% empty %}
+                    <p>{% trans "Sorry, no one here at the moment :(" %}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
+</section>
+<section style="padding-top: 2em;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                {% get_checked_in_place user as checked_in_place %}
+                {% include "checkins/partials/checkin_button.html" %}
+                {% include "subscriptions/partials/subscribe_button.html" %}
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
