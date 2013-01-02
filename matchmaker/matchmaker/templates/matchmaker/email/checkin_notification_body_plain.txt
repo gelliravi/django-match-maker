@@ -1,10 +1,10 @@
-Hi there,
+{% load i18n%}{% load url from future %}{% trans "Hi there," %}
 
-a player has just checked in at {{ place.name }}.
+{% blocktrans with place_name=place.name %}a player has just checked in at {{ place_name }}.{% endblocktrans %}
 
-How about getting out and playing some basketball right now? :)
+{% trans "How about getting out and playing some basketball right now? :)" %}
 
-You can check the places around you at https://playerpointer.com/places
+{% trans "You can check out the place here:" %} https://playerpointer.com{% url "places_detail" pk=place.pk %}
 
-Cheers,
-PlayerPointer.com
+{% trans "Cheers," %}
+{% trans "PlayerPointer.com" %}

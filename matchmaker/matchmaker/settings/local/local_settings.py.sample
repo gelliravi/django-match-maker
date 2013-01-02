@@ -77,3 +77,15 @@ LOCAL_PG_ADMIN_ROLE = 'username'
 # ============================================================================
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'www.miniwebtool.com/django-secret-key-generator/'
+
+
+# ============================================================================
+# Geo settings
+# ============================================================================
+# GDAL_LIBRARY_PATH = '/Library/Frameworks/GDAL.framework/GDAL'
+# GEOS_LIBRARY_PATH = '/Library/Frameworks/GEOS.framework/GEOS'
+
+# ============================================================================
+# Test settings
+# ============================================================================
+# SPATIALITE_LIBRARY_PATH = '/Library/Frameworks/SQLite3.framework/SQLite3'
