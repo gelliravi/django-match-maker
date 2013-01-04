@@ -40,6 +40,9 @@ def is_subscribed(user, obj):
     :param obj: Any object.
 
     """
+    if not user.is_authenticated():
+        return False
+
     ctype = ContentType.objects.get_for_model(obj)
 
     try:
