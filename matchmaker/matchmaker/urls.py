@@ -18,6 +18,7 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^api/', include('api.urls')),
     url(r'^places/$',
         CustomPlaceListView.as_view(),
         name='places_list',),
