@@ -3,7 +3,11 @@ from django.test import TestCase
 
 from django_libs.tests.factories import UserFactory
 
-from checkins.forms import CheckinCreateForm, CheckoutForm
+from checkins.forms import (
+    CheckinCreateForm,
+    CheckinMassCreateForm,
+    CheckoutForm,
+)
 from checkins.models import Checkin
 from checkins.tests.factories import CheckinFactory
 from places.tests.factories import PlaceFactory, PlaceTypeFactory
@@ -36,9 +40,33 @@ class CheckinCreateFormTestCase(TestCase):
         user = UserFactory()
         form = CheckinCreateForm(user=user, place=self.place, data=self.data)
         self.assertTrue(form.is_valid(), msg=(
-            'Erorrs: {0}'.format(form.errors.items())))
+            'Errors: {0}'.format(form.errors.items())))
         instance = form.save()
         self.assertTrue(instance.pk)
+
+
+class CheckinMassCreateFormTestCase(TestCase):
+    """Tests for the ``CheckinMassCreateForm`` form class."""
+    longMessage = True
+
+    def setUp(self):
+        super(CheckinMassCreateFormTestCase, self).setUp()
+        self.type = PlaceTypeFactory(name='Basketball')
+        self.place = PlaceFactory()
+        self.data = {
+            'count': 5,
+            'lat': '1.3568494',
+            'lng': '103.9478796',
+        }
+
+    def test_form(self):
+        """Should create 5 anonymous checkins."""
+        form = CheckinMassCreateForm(place=self.place, user_name_base='Player',
+                                     data=self.data)
+        self.assertTrue(form.is_valid(), msg=(
+            'Errors: {0}'.format(form.errors.items())))
+        form.save()
+        self.assertEqual(Checkin.objects.all().count(), 5)
 
 
 class CheckoutFormTestCase(TestCase):

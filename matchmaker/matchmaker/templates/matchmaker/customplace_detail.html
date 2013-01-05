@@ -39,10 +39,16 @@
             <div class="span12">
                 {% get_checked_in_place user as checked_in_place %}
                 {% include "checkins/partials/checkin_button.html" %}
+                <p><a class="btn" href="{% url "checkins_mass_create" place_pk=place.pk %}">{% trans "Checkin more players" %}</a></p>
                 {% include "subscriptions/partials/subscribe_button.html" %}
-                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+                <p><a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a></p>
             </div>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block "extrajs" %}
+<script src="{{ STATIC_URL }}checkins/js/geo-success-checkin-form.js"></script>
+<script src="{{ STATIC_URL }}places/js/geolocator.js"></script>
 {% endblock %}

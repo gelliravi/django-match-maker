@@ -1,0 +1,36 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% trans "Mass Check-in" %}</h1>
+        <p class="lead">
+            {% blocktrans with place=place.name %}
+            You are about to checkin a number of anonymous players at <strong>{{ place }}</strong>. Their check-ins will automatically expire after 90 minutes.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "Please note that you can only check-in if you accept the geolocation popup of your browser." %}</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <form id="form" method="post" action="./#form">
+                {% csrf_token %}
+                {% include "matchmaker/partials/form.html" %}
+                <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled" />
+                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block "extrajs" %}
+<script src="{{ STATIC_URL }}checkins/js/geo-success-checkin-form.js"></script>
+<script src="{{ STATIC_URL }}places/js/geolocator.js"></script>
+{% endblock %}

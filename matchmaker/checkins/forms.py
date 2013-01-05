@@ -39,7 +39,7 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
 
     def save(self, *args, **kwargs):
         """
-        Creates a new ``Checkin`` for.
+        Creates a new ``Checkin`` for a user.
 
         This can be done for anonymous users or for real users.
         Since we call ``checkin.save()`` here, the ``save()`` override will
@@ -58,6 +58,71 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
             self.cleaned_data['lat'],
         )
         checkin.save()
+        return checkin
+
+
+class CheckinMassCreateForm(FormWithLatLngMixin, forms.Form):
+    """Form that creates a number of anonymous checkins."""
+    count = forms.IntegerField(
+        label=_('Count'),
+        min_value=1,
+        max_value=12,
+    )
+
+    def __init__(self, user=None, place=None, user_name_base='User', *args,
+                 **kwargs):
+        super(CheckinMassCreateForm, self).__init__(*args, **kwargs)
+        assert place is not None, ('Place cannot be None.')
+        self.place = place
+        self.user_name_base = user_name_base
+        self.add_lat_lng_fields()
+
+    def _get_highest_user_name(self):
+        """
+        Returns the highest username amongst the currently checked in users.
+
+        This can happen if someone checked in 5 anonymous users. Then someone
+        else checks in another 5 users. These last 5 users should be named
+        ``User6`` to ``User10``.
+
+        """
+        checkins = Checkin.objects.filter(place=self.place, expired=False)
+        highest_number = 0
+        for checkin in checkins:
+            if checkin.user_name.startswith(self.user_name_base):
+                try:
+                    current_number = int(checkin.user_name.replace(
+                        self.user_name_base, ''))
+                except ValueError:
+                    # Someone has named himself something like ``UserA``
+                    current_number = 0
+                if current_number > highest_number:
+                    highest_number = current_number
+        return highest_number
+
+    def pre_save(self, *args, **kwargs):
+        """Can be overridden by forms inheriting this form."""
+        return
+
+    def save(self, *args, **kwargs):
+        """
+        Creates a number of new checkins for anonymous users.
+
+        Users will be called ``User1``, ``User2`` and so on.
+
+        """
+        self.pre_save(*args, **kwargs)
+        highest_number = self._get_highest_user_name()
+        count = self.cleaned_data.get('count')
+        for i in range(highest_number + 1, highest_number + 1 + count, 1):
+            checkin = Checkin()
+            checkin.place = self.place
+            checkin.user_name = '{0}{1}'.format(self.user_name_base, i)
+            checkin.point = Point(
+                self.cleaned_data['lng'],
+                self.cleaned_data['lat'],
+            )
+            checkin.save()
         return checkin
 
 

@@ -30,6 +30,35 @@ class CheckinCreateViewTestCase(ViewTestMixin, TestCase):
         self.should_be_callable_when_anonymous()
 
 
+class CheckinMassCreateViewTestCase(ViewTestMixin, TestCase):
+    """Tests for the ``CheckinMassCreateView`` view class."""
+    def setUp(self):
+        self.place = PlaceFactory()
+        self.data = {
+            'count': 5,
+            'lat': '1.3568494',
+            'lng': '103.9478796',
+        }
+
+    def get_view_name(self):
+        return 'checkins_mass_create'
+
+    def get_view_kwargs(self):
+        return {'place_pk': self.place.pk, }
+
+    def test_raises_404(self):
+        """Should raise 404 if place does not exist."""
+        url = self.get_url(view_kwargs={'place_pk': 999, })
+        resp = self.client.post(url, data=self.data)
+        self.assertEqual(resp.status_code, 404)
+
+    def test_view(self):
+        """Should create five anonymous checkins."""
+        url = self.get_url()
+        self.client.post(url, data=self.data)
+        self.assertEqual(Checkin.objects.all().count(), 5)
+
+
 class CheckoutViewTestCase(ViewTestMixin, TestCase):
     """Tests for the ``CheckoutView`` view class."""
     def setUp(self):
