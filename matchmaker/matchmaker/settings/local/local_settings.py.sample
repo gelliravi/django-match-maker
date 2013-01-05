@@ -2,6 +2,9 @@
 import os
 
 from matchmaker.settings.base_settings import PROJECT_ROOT
+from matchmaker.settings.installed_apps import INSTALLED_APPS
+from matchmaker.settings.middleware_settings import MIDDLEWARE_CLASSES
+
 
 # ============================================================================
 # Debug settings
@@ -89,3 +92,16 @@ SECRET_KEY = 'www.miniwebtool.com/django-secret-key-generator/'
 # Test settings
 # ============================================================================
 # SPATIALITE_LIBRARY_PATH = '/Library/Frameworks/SQLite3.framework/SQLite3'
+
+
+# ============================================================================
+# Debug Toolbar settings
+# ============================================================================
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE_CLASSES.append(
+        'debug_toolbar.middleware.DebugToolbarMiddleware')
+    INTERNAL_IPS = ('127.0.0.1',)
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
