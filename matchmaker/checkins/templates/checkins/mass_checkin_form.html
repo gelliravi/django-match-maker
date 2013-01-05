@@ -22,7 +22,7 @@
                 {% csrf_token %}
                 {% include "matchmaker/partials/form.html" %}
                 <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled" />
-                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+                <a class="btn" href="{% url "places_detail" pk=place.pk %}">{% trans "Cancel" %}</a>
             </form>
         </div>
     </div>
