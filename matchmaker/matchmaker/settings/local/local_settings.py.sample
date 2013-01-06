@@ -87,6 +87,8 @@ SECRET_KEY = 'www.miniwebtool.com/django-secret-key-generator/'
 # ============================================================================
 # GDAL_LIBRARY_PATH = '/Library/Frameworks/GDAL.framework/GDAL'
 # GEOS_LIBRARY_PATH = '/Library/Frameworks/GEOS.framework/GEOS'
+# GEOIP_LIBRARY_PATH = '/usr/local/Cellar/geoip/1.4.8/lib/libGeoIP.dylib'
+
 
 # ============================================================================
 # Test settings

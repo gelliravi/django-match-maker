@@ -1,9 +1,26 @@
 """Views of the ``places`` app."""
+from django.conf import settings
+from django.contrib.gis.utils import GeoIP
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, ListView
 
 from places.forms import PlaceCreateForm
 from places.models import Place
+
+
+def get_geoip_position(request):
+    """Returns the user's position as a (lat, lng) tuple based on his IP."""
+    result = (None, None)
+    g = GeoIP()
+    ip = (request.META.get('HTTP_X_FORWARDED_FOR')
+            or request.META.get('REMOTE_ADDR'))
+    result = g.lon_lat(ip)
+    if result is None:
+        ip = settings.SERVER_IP
+        result = g.lon_lat(ip)
+        if result is None:
+            return None
+    return (result[1], result[0])
 
 
 class PlaceCreateView(CreateView):
@@ -36,9 +53,12 @@ class PlaceListView(ListView):
 
     def get_queryset(self):
         if not self.request.POST.get('lat'):
-            return None
-        return Place.objects.get_nearby(
-            5, self.request.POST.get('lat'), self.request.POST.get('lng'),)
+            lat_lng = get_geoip_position(self.request)
+            if not lat_lng:
+                return None
+        lat = self.request.POST.get('lat') or lat_lng[0]
+        lng = self.request.POST.get('lng') or lat_lng[1]
+        return Place.objects.get_nearby(5, lat, lng,)
 
     def post(self, request, *args, **kwargs):
         return self.get(request, *args, **kwargs)

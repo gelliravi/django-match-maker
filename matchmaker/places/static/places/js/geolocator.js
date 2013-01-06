@@ -1,12 +1,16 @@
 function error(msg) {
-    var s = document.querySelector('#status');
-    s.innerHTML = typeof msg == 'string' ? msg : "failed";
-    s.className = 'fail';
+    if (msg.hasOwnProperty('code')) {
+        if (msg.code == 1) {
+            fallback()
+        }
+    } else {
+        console.log(msg);
+    }
 }
 
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
 } else {
-    error('not supported');
+    error('Geolocation not supported')
 }

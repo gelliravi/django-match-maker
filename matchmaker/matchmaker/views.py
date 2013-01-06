@@ -1,9 +1,10 @@
 """Views of the ``matchmaker`` project."""
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+from django.contrib.gis.utils import GeoIP
 
 from places.models import Place
-from places.views import PlaceDetailView, PlaceListView
+from places.views import PlaceDetailView, PlaceListView, get_geoip_position
 from matchmaker.models import CustomPlace
 
 
@@ -40,13 +41,15 @@ class CustomPlaceListView(PlaceListView):
 
     def get_queryset(self):
         if not self.request.POST.get('lat'):
-            return None
+            lat_lng = get_geoip_position(self.request)
+            if not lat_lng:
+                return None
+        lat = self.request.POST.get('lat') or str(lat_lng[0])
+        lng = self.request.POST.get('lng') or str(lat_lng[1])
 
-        lat = self.request.POST.get('lat')
-        lng = self.request.POST.get('lng')
+        if self.filter == 'all':
+            return Place.objects.get_distance(lat, lng).order_by('distance')
         if self.filter == 'nearby':
             return Place.objects.get_nearby(5, lat, lng).order_by('distance')
         if self.filter == 'active':
             return Place.objects.get_active()
-        if self.filter == 'all':
-            return Place.objects.get_distance(lat, lng).order_by('distance')

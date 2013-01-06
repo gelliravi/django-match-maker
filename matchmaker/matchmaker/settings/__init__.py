@@ -8,6 +8,7 @@ from matchmaker.settings.staticfiles_settings import *
 from matchmaker.settings.logging_settings import *
 from matchmaker.settings.i18n_settings import *
 from matchmaker.settings.email_settings import *
+from matchmaker.settings.geo_settings import *
 from matchmaker.settings.django_settings import *
 from matchmaker.settings.fabfile_settings import *
 from matchmaker.settings.local.local_settings import *
