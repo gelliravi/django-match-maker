@@ -1,3 +1,6 @@
 [submodule "matchmaker/submodules/bootstrap"]
 	path = matchmaker/submodules/bootstrap
 	url = git://github.com/twitter/bootstrap.git
+[submodule "matchmaker/submodules/openlayers"]
+	path = matchmaker/submodules/openlayers
+	url = git://github.com/openlayers/openlayers.git

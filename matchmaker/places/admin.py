@@ -7,6 +7,8 @@ from places.models import Place, PlaceType
 
 class GoogleMapsAdmin(admin.OSMGeoAdmin):
     map_template = 'gis/admin/google.html'
+    openlayers_url = (
+        'https://playerpointer.com/static/places/js/libs/OpenLayers.js')
     extra_js = [
         'https://maps.googleapis.com/'
         'maps/api/js?key={0}&sensor=false'.format(
