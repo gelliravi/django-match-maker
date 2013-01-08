@@ -8,8 +8,8 @@ from places.models import Place, PlaceType
 class GoogleMapsAdmin(admin.OSMGeoAdmin):
     map_template = 'gis/admin/google.html'
     extra_js = [
-        'https://maps.google.com/'
-        'maps?file=api&v=2&sensor=false&callback=initialize&key={0}'.format(
+        'https://maps.googleapis.com/'
+        'maps/api/js?key={0}&sensor=false'.format(
             settings.GOOGLE_MAPS_API_KEY),
     ]
 
