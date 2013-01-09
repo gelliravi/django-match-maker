@@ -89,6 +89,8 @@ def user_registered_handler(sender, user, request, **kwargs):
 
 def new_users_handler(sender, user, response, details, **kwargs):
     """Creates a new profile for a new user registered via social auth."""
+    user.email = user.email.lower()
+    user.save()
     create_profile_for_new_user(user)
 socialauth_registered.connect(new_users_handler, sender=None)
 
