@@ -7,8 +7,8 @@ from user_profile.models import UserProfile
 
 class UserProfileAdmin(admin.ModelAdmin):
     """Customized admin for the ``UserProfile`` model."""
-    list_display = ('user', 'user_email')
-    search_fields = ['user__username', 'user__email']
+    list_display = ('user', 'user_email', 'display_name', 'username')
+    search_fields = ['username', 'user__email', 'display_name']
 
     def user_email(self, obj):
         return obj.user.email
