@@ -19,7 +19,7 @@ django-debug-toolbar==0.9.4
 -e git+git://github.com/bmcustodio/flake8.git@6a641337c99e7cc2ee7f39e6bc9aea0c0c820d66#egg=flake8
 coverage==3.6b1
 django-coverage==1.2.2
-django-development-fabfile==0.1
+django-development-fabfile==0.3.1
 nose==1.2.1
 django-nose==1.1
 Fabric==1.5.1

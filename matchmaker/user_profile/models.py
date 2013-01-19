@@ -84,6 +84,8 @@ def create_profile_for_new_user(user):
 @receiver(user_registered)
 def user_registered_handler(sender, user, request, **kwargs):
     """Creates a new profile for a new user registered via email."""
+    user.email = user.email.lower()
+    user.save()
     create_profile_for_new_user(user)
 
 
