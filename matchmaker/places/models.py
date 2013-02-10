@@ -33,6 +33,12 @@ class Place(models.Model):
     :type: Optional type of the place.
 
     """
+    created_by = models.ForeignKey(
+        'auth.User',
+        verbose_name=_('Created by'),
+        null=True, blank=True,
+    )
+
     name = models.CharField(
         max_length=256,
         verbose_name=_('Name'),
@@ -42,6 +48,12 @@ class Place(models.Model):
         verbose_name=_('Point'),
         geography=True,
         null=True, blank=False,
+    )
+
+    description = models.TextField(
+        max_length=4000,
+        verbose_name=_('Description'),
+        blank=True,
     )
 
     type = models.ForeignKey(

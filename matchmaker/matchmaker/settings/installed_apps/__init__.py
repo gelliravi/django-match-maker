@@ -26,6 +26,7 @@ EXTERNAL_APPS = [
     'registration_email',
     'social_auth',
     'south',
+    'reversion',
 ]
 
 INTERNAL_APPS = [

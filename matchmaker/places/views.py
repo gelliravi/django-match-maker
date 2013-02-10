@@ -29,6 +29,11 @@ class PlaceCreateView(CreateView):
     model = Place
     success_url = '/'
 
+    def get_form_kwargs(self):
+        kwargs = super(PlaceCreateView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user, })
+        return kwargs
+
 
 class PlaceDetailView(DetailView):
     """Allows to see details about a place."""

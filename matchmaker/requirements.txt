@@ -8,6 +8,7 @@ django-libs==0.11
 django-registration==0.8
 django-registration-email==0.3
 django-social-auth==0.7.13
+django-reversion==1.6.5
 South==0.7.6
 pytz==2012h
 

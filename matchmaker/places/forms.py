@@ -19,10 +19,11 @@ class FormWithLatLngMixin(object):
 class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
     class Meta:
         model = Place
-        exclude = ['point', 'type', ]
+        fields = ['name', ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user=None,  *args, **kwargs):
         super(PlaceCreateForm, self).__init__(*args, **kwargs)
+        self.user = user
         self.fields['name'].help_text = _(
             'Chose a name that is common among players. Usually a nearby'
             ' block, school or park would identify a playing field nicely.')
@@ -31,6 +32,8 @@ class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
     def save(self, *args, **kwargs):
         assert hasattr(self, 'cleaned_data'), (
             'Please call `is_valid` before calling `save`')
+        if self.user.is_authenticated():
+            self.instance.created_by = self.user
         self.instance.point = Point(
             self.cleaned_data['lng'], self.cleaned_data['lat'])
         self.instance.type = PlaceType.objects.get(name='Basketball')
