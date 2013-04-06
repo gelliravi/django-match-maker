@@ -29,8 +29,8 @@
 <section class="subhead" style="padding-top: 2em; padding-bottom: 2em;">
 <div class="container">
     <div class="row">
-        <div class="span12">
-            <h2>{% trans "Recently seen at..." %}</h2>
+        <div class="span6">
+            <h2>{% trans "Recently seen at:" %}</h2>
             {% for checkin in object.get_recent_checkins %}
                 <p>
                     {{ checkin.time|timesince }}:
@@ -40,6 +40,14 @@
                 <p>{% trans "Whoa! No one has checked into this court, yet. Your turn!" %}</p>
             {% endfor %}
         </div>
+        {% if object.get_subscribed_places %}
+        <div class="span6">
+            <h2>{% trans "Subscribed places:" %}</h2>
+            {% for subscription in object.get_subscribed_places %}
+                <a href="{{ subscription.content_object.get_absolute_url }}">{{ subscription.content_object.name }}</a>{% if not forloop.last %}, {% endif%}
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </div>
  

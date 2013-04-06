@@ -1,4 +1,5 @@
 """Models for the ``user_profile`` app."""
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
@@ -6,9 +7,11 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from places.models import Place
 from registration.signals import user_registered
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.signals import pre_update, socialauth_registered
+from subscribe.models import Subscription
 from user_profile.constants import GENDER_CHOICES, TIMEZONE_CHOICES
 
 
@@ -85,6 +88,11 @@ class UserProfile(models.Model):
 
     def get_recent_checkins(self):
         return self.user.checkins.all()[:5]
+
+    def get_subscribed_places(self):
+        ctype = ContentType.objects.get_for_model(Place)
+        return Subscription.objects.filter(
+            user=self.user, content_type=ctype)
 
 
 def create_profile_for_new_user(user):

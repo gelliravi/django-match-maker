@@ -1,9 +1,12 @@
 """Models of the ``places`` app."""
-from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
+from subscribe.models import Subscription
 
 
 class PlaceManager(models.GeoManager):
@@ -73,6 +76,11 @@ class Place(models.Model):
 
     def get_recent_checkins(self):
         return self.checkins.filter(user__isnull=False)[:5]
+
+    def get_subscribers(self):
+        ctype = ContentType.objects.get_for_model(self)
+        return Subscription.objects.filter(
+            content_type=ctype, object_id=self.pk)
 
 
 class PlaceType(models.Model):

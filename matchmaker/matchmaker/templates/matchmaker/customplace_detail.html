@@ -52,7 +52,7 @@
 <section class="subhead" style="padding-top: 2em; padding-bottom: 2em;">
     <div class="container">
         <div class="row">
-            <div class="span12">
+            <div class="span6">
                 <h2>{% trans "Recent checkins" %}</h2>
                 {% for checkin in place.get_recent_checkins %}
                     <p>
@@ -66,6 +66,17 @@
                 {% empty %}
                     <p>{% trans "Whoa! No one has checked into this court, yet. Your turn!" %}</p>
                 {% endfor %}
+            </div>
+            <div class="span6">
+                <h2>{% trans "Subscribed players" %}</h2>
+                <p>
+                    {% for subscriber in place.get_subscribers %}
+                        {% if subscriber.user.get_profile.get_absolute_url %}
+                        <a href="{{ subscriber.user.get_profile.get_absolute_url }}">{{ subscriber.user.get_profile.display_name }}</a>{% else %}{{ subscriber.user.get_profile.display_name }}{% endif %}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        {% trans "What a lonely place! No one has subscribed to this court, yet..." %}
+                    {% endfor %}
+                </p>
             </div>
         </div>
     </div>
