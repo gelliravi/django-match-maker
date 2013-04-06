@@ -25,7 +25,13 @@
             </ul>
         </div>
         <div class="span12">
-            <div id="placeList"></div>
+            <div id="placeList">
+                <div class="progress progress-striped active">
+                    <div class="bar" style="width: 80%;"></div>
+                </div>
+                <p>{% trans "Loading places..." %}</p>
+                <p>{% trans "If this takes very long, try to reload the page." %}</p>
+            </div>
         </div>
     </div>
 </div>

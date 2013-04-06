@@ -8,7 +8,6 @@ function error(msg) {
     }
 }
 
-
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
 } else {

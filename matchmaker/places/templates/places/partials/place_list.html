@@ -1,7 +1,22 @@
 {% load i18n checkins_tags %}
 {% load url from future %}
 
+{% url "places_create" as places_create %}
+
 {% get_checked_in_place user as checked_in_place %}
+{% if not places %}
+<div class="alert">
+    <strong>Too bad!</strong> {% trans "We could not find any places near you." %}
+    <p>
+        {% blocktrans %}
+        Sometimes this happens when the geolocation API in your browser fails.
+        You might try the "All places" tab.
+        {% endblocktrans %}
+    </p>
+    <p>{% trans "If your place really does not show up, you can be a hero and add it to our database!" %}</p>
+    <a href="{{ places_create }}">{% trans "Add new place" %}</a>
+</div>
+{% endif %}
 {% for place in places %}
     {% if place == checked_in_place %}
         {% include "places/partials/place_list_item.html" %}
