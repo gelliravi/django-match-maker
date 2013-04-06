@@ -72,7 +72,7 @@ class Place(models.Model):
         return reverse('places_detail', kwargs={'pk': self.pk, })
 
     def get_recent_checkins(self):
-        return self.checkins.all()[:5]
+        return self.checkins.filter(user__isnull=False)[:5]
 
 
 class PlaceType(models.Model):
