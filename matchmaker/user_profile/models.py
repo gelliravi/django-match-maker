@@ -1,4 +1,5 @@
 """Models for the ``user_profile`` app."""
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch import receiver
@@ -73,6 +74,14 @@ class UserProfile(models.Model):
         verbose_name=_('Facebook ID'),
         blank=True,
     )
+
+    def __unicode__(self):
+        return self.display_name or self.username
+
+    def get_absolute_url(self):
+        return reverse(
+            'user_profile_public_profile',
+            kwargs={'username': self.username, })
 
 
 def create_profile_for_new_user(user):

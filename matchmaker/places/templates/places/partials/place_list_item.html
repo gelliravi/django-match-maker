@@ -10,6 +10,6 @@
     <p>{% trans "Subscribers:" %} {{ subscribers.count }} player{{ subscribers.count|pluralize }}</p>
     {% include "checkins/partials/checkin_button.html" %}
     {% if user.is_authenticated %}
-        {% include "subscriptions/partials/subscribe_button.html" %}
+        {% include "subscribe/partials/subscribe_button.html" with content_object=place %}
     {% endif %}
 </div>

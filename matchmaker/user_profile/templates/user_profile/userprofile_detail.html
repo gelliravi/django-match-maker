@@ -1,0 +1,25 @@
+{% extends "matchmaker/base.html" %}
+{% load i18n %}
+
+
+{% block "main" %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{{ object.display_name|default:object.username }}</h1>
+        <p class="lead">
+            {% blocktrans with place=place.name %}
+            On the public profile we will show all kinds of statistics, soon.
+            {% endblocktrans %}
+        </p>
+        <p>{% trans "By subscribing to your friends you will get notifications whenever they play." %}</p>
+
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            {% include "subscribe/partials/subscribe_button.html" with content_object=object %}
+        </div>
+    </div>
+</div>
+{% endblock %}

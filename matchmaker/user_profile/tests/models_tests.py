@@ -69,9 +69,17 @@ class NewUsersHandlerTestCase(TestCase):
 
 class UserProfileTestCase(TestCase):
     """Tests for the ``UserProfile`` model."""
+    def setUp(self):
+        self.profile = UserProfileFactory()
+
     def test_model(self):
-        profile = UserProfileFactory()
-        self.assertTrue(profile.pk)
+        self.assertTrue(self.profile.pk)
+
+    def test_get_absolute_url(self):
+        self.profile.username = 'foobar'
+        self.profile.save()
+        result = self.profile.get_absolute_url()
+        self.assertEqual(result, '/profile/foobar/')
 
 
 class UserRegisteredHandlerTestCase(TestCase):

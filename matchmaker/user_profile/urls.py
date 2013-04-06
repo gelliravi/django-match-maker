@@ -1,7 +1,11 @@
 """URLs for the ``user_profile`` app."""
 from django.conf.urls.defaults import patterns, url
 
-from user_profile.views import UsernameUpdateView, UserProfileUpdateView
+from user_profile.views import (
+    UsernameUpdateView,
+    UserProfileUpdateView,
+    PublicProfileView,
+)
 
 
 urlpatterns = patterns(
@@ -14,4 +18,7 @@ urlpatterns = patterns(
         UsernameUpdateView.as_view(),
         name='user_profile_username_update', ),
 
+    url(r'^(?P<username>[\w-]+)/$',
+        PublicProfileView.as_view(),
+        name='user_profile_public_profile', ),
 )

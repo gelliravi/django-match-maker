@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 
 from user_profile.forms import UsernameUpdateForm, UserProfileUpdateForm
 from user_profile.models import UserProfile
@@ -54,3 +54,9 @@ class UsernameUpdateView(UserProfileViewMixin, FormView):
             request, *args, **kwargs)
         if self.user_profile.username:
             return redirect(reverse('user_profile_update'))
+
+
+class PublicProfileView(DetailView):
+    model = UserProfile
+    slug_field = 'username'
+    slug_url_kwarg = 'username'

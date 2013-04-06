@@ -81,3 +81,23 @@ class UsernameUpdateViewTestCase(ViewTestMixin, TestCase):
         self.client.post(self.get_url(), data={'username': 'foobar'})
         profile = UserProfile.objects.get(pk=self.profile.pk)
         self.assertEqual(profile.username, 'foobar')
+
+
+class PublicProfileViewTestCase(ViewTestMixin, TestCase):
+    """Tests for the ``PublicProfileView`` view class."""
+    longMessage = True
+
+    def setUp(self):
+        self.profile = UserProfileFactory()
+        self.profile.username = 'foobar'
+        self.profile.save()
+
+    def get_view_name(self):
+        return 'user_profile_public_profile'
+
+    def get_view_kwargs(self):
+        return {'username': self.profile.username, }
+
+    def test_callable(self):
+        """Should be callable."""
+        self.should_be_callable_when_anonymous()

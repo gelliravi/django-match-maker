@@ -40,7 +40,7 @@
                 {% get_checked_in_place user as checked_in_place %}
                 {% include "checkins/partials/checkin_button.html" %}
                 <p><a class="btn" href="{% url "checkins_mass_create" place_pk=place.pk %}">{% trans "Checkin more players" %}</a></p>
-                {% include "subscribe/partials/subscribe_button.html" %}
+                {% include "subscribe/partials/subscribe_button.html" with content_object=place %}
                 <p><a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a></p>
             </div>
         </div>
