@@ -1,4 +1,5 @@
 """Models of the ``places`` app."""
+from django.core.urlresolvers import reverse
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
@@ -66,6 +67,9 @@ class Place(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('places_detail', kwargs={'pk': self.pk, })
 
 
 class PlaceType(models.Model):

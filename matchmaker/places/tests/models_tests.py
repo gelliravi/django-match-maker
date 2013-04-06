@@ -11,6 +11,11 @@ class PlaceTestCase(TestCase):
         instance = PlaceFactory()
         self.assertTrue(instance.pk)
 
+    def test_get_absolute_url(self):
+        place = PlaceFactory()
+        result = place.get_absolute_url()
+        self.assertEqual(result, '/places/1/')
+
 
 class PlaceTypeTestCase(TestCase):
     """Tests for the ``PlaceType`` model class."""

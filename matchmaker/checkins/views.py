@@ -1,5 +1,6 @@
 """Views for the ``checkins`` app."""
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import FormView
@@ -51,6 +52,9 @@ class CheckinCreateView(CheckinCreateViewMixin, FormView):
         if self.request.user.is_authenticated():
             kwargs.update({'user': self.request.user, })
         return kwargs
+
+    def get_success_url(self):
+        return self.place.get_absolute_url()
 
 
 class CheckinMassCreateView(CheckinCreateViewMixin, FormView):
