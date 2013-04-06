@@ -82,8 +82,18 @@ def send_checkin_notifications(sender, **kwargs):
 
     if checkins.count() == 1:
         recipients = []
+
+        # Get subscribers of the player who checked in
+        ctype = ContentType.objects.get_for_model(instance.user.get_profile())
+        subscriptions = Subscription.objects.filter(
+            content_type=ctype, object_id=instance.pk)
+        for subscription in subscriptions:
+            recipients.append(subscription.user.email)
+
+        # Get subscribers of the place
         ctype = ContentType.objects.get_for_model(instance.place)
-        subscriptions = Subscription.objects.filter(content_type=ctype)
+        subscriptions = Subscription.objects.filter(
+            content_type=ctype, object_id=instance.place.pk)
         for subscription in subscriptions:
             recipients.append(subscription.user.email)
 
