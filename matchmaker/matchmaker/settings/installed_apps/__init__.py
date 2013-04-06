@@ -27,6 +27,8 @@ EXTERNAL_APPS = [
     'social_auth',
     'south',
     'reversion',
+    'subscribe',
+    'subscribe.tests.test_app',
 ]
 
 INTERNAL_APPS = [
@@ -34,7 +36,6 @@ INTERNAL_APPS = [
     'matchmaker',
     'places',
     'checkins',
-    'subscriptions',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS

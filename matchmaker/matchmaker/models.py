@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 
 from checkins.models import Checkin
 from places.models import Place, PlaceManager
-from subscriptions.models import Subscription
+from subscribe.models import Subscription
 
 
 class CustomPlaceManager(PlaceManager):

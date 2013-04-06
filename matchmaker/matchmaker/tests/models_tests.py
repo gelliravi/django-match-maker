@@ -5,7 +5,7 @@ from mailer.models import Message
 
 from checkins.tests.factories import CheckinFactory
 from places.tests.factories import PlaceFactory
-from subscriptions.tests.factories import SubscriptionFactory
+from subscribe.tests.factories import SubscriptionFactory
 
 
 class SendCheckinNotificationsTestCase(TestCase):

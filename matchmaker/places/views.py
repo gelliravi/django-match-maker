@@ -13,7 +13,7 @@ def get_geoip_position(request):
     result = (None, None)
     g = GeoIP()
     ip = (request.META.get('HTTP_X_FORWARDED_FOR')
-            or request.META.get('REMOTE_ADDR'))
+          or request.META.get('REMOTE_ADDR'))
     result = g.lon_lat(ip)
     if result is None:
         ip = settings.SERVER_IP

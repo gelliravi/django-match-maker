@@ -6,7 +6,6 @@ PREPEND_WWW = False
 
 INSTALLED_APPS += [
     'django_nose',
-    'subscriptions.tests.test_app',
 ]
 
 

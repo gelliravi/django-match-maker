@@ -21,7 +21,7 @@ class PlaceCreateForm(FormWithLatLngMixin, forms.ModelForm):
         model = Place
         fields = ['name', ]
 
-    def __init__(self, user=None,  *args, **kwargs):
+    def __init__(self, user=None, *args, **kwargs):
         super(PlaceCreateForm, self).__init__(*args, **kwargs)
         self.user = user
         self.fields['name'].help_text = _(

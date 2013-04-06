@@ -32,7 +32,7 @@ urlpatterns = patterns(
         ),
         name='checkins_create',),
     url(r'^checkins/', include('checkins.urls')),
-    url(r'^subscriptions/', include('subscriptions.urls')),
+    url(r'^subscribe/', include('subscribe.urls')),
     url(r'^accounts/', include('registration_email.backends.simple.urls')),
     url(r'^accounts/', include('social_auth.urls')),
     url(r'^profile/', include('user_profile.urls')),

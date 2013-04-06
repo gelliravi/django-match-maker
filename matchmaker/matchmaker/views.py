@@ -1,7 +1,6 @@
 """Views of the ``matchmaker`` project."""
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from django.contrib.gis.utils import GeoIP
 
 from places.models import Place
 from places.views import PlaceDetailView, PlaceListView, get_geoip_position

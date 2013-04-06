@@ -10,6 +10,7 @@ from places.models import Place, PlaceType
 
 Options.get_ordered_objects = lambda x: None
 
+
 class GoogleMapsAdmin(reversion.VersionAdmin, admin.OSMGeoAdmin):
     map_template = 'gis/admin/google.html'
     openlayers_url = '{0}places/js/libs/openlayers/OpenLayers.js'.format(

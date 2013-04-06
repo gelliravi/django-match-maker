@@ -3,9 +3,9 @@ function getURLParameter(name) {
 }
 
 
-function post_request(lat, lng) {
+function get_request(lat, lng) {
     var filter = getURLParameter('filter');
-    $.post(
+    $.get(
         '/places/'
         ,{
             lat: lat
@@ -20,10 +20,10 @@ function post_request(lat, lng) {
 
 
 function fallback() {
-    post_request('', '');
+    get_request('', '');
 }
 
 
 function success(position) {
-    post_request(position.coords.latitude, position.coords.longitude);
+    get_request(position.coords.latitude, position.coords.longitude);
 }
