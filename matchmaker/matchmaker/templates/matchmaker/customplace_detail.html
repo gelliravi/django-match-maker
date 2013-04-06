@@ -16,6 +16,7 @@
         <p>{% trans "Note: When you add anonymous players, they will get checked-out after 90 minutes. We will not save any statistics for them." %}</p>
     </div>
 </header>
+
 <section class="subhead">
     <div class="container">
         <div class="row">
@@ -33,15 +34,38 @@
         </div>
     </div>
 </section>
-<section style="padding-top: 2em;">
+
+<section class="subhead" style="padding-top: 2em; padding-bottom: 2em;">
     <div class="container">
         <div class="row">
             <div class="span12">
                 {% get_checked_in_place user as checked_in_place %}
                 {% include "checkins/partials/checkin_button.html" %}
-                <p><a class="btn" href="{% url "checkins_mass_create" place_pk=place.pk %}">{% trans "Checkin more players" %}</a></p>
+                <a class="btn" href="{% url "checkins_mass_create" place_pk=place.pk %}">{% trans "Checkin more players" %}</a>
                 {% include "subscribe/partials/subscribe_button.html" with content_object=place %}
-                <p><a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a></p>
+                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="subhead" style="padding-top: 2em; padding-bottom: 2em;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>{% trans "Recent checkins" %}</h2>
+                {% for checkin in place.get_recent_checkins %}
+                    <p>
+                        {{ checkin.time|timesince }}:
+                        {% if checkin.user.get_profile.get_absolute_url %}
+                        <a href="{{ checkin.user.get_profile.get_absolute_url }}">{{ checkin.user.get_profile.display_name }}</a>
+                        {% else %}
+                            {{ checkin.user.get_profile.display_name }}
+                        {% endif %}
+                    </p>
+                {% empty %}
+                    <p>{% trans "Whoa! No one has checked into this court, yet. Your turn!" %}</p>
+                {% endfor %}
             </div>
         </div>
     </div>

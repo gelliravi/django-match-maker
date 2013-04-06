@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if place.pk == checked_in_place.pk %}
-    <p><a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a></p>
+    <a class="btn btn-warning" href="{% url "checkins_checkout" %}">{% trans "Check-out here" %}</a>
 {% else %}
-    <p><a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Check-in here" %}</a></p>
+    <a class="btn btn-primary" href="{% url "checkins_create" place_pk=place.pk %}">{% trans "Check-in here" %}</a>
 {% endif %}

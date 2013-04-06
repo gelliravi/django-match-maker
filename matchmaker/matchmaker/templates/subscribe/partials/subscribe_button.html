@@ -2,7 +2,7 @@
 {% get_ctype content_object as ctype %}
 {% is_subscribed user content_object as user_is_subscribed %}
 {% if user_is_subscribed %}
-    <p><a class="btn" href="{% url "subscriptions_delete" ctype_pk=ctype.pk object_pk=content_object.pk %}">{% trans "Un-subscribe" %}</a></p>
+    <a class="btn" href="{% url "subscriptions_delete" ctype_pk=ctype.pk object_pk=content_object.pk %}">{% trans "Un-subscribe" %}</a>
 {% else %}
-    <p><a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=content_object.pk %}">{% trans "Subscribe" %}</a></p>
+    <a class="btn" href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=content_object.pk %}">{% trans "Subscribe" %}</a>
 {% endif %}

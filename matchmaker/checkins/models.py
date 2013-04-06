@@ -16,6 +16,7 @@ class Checkin(models.Model):
     user = models.ForeignKey(
         'auth.User',
         verbose_name=_('User'),
+        related_name='checkins',
         null=True, blank=True,
     )
 
@@ -28,6 +29,7 @@ class Checkin(models.Model):
     place = models.ForeignKey(
         'places.Place',
         verbose_name=_('Place'),
+        related_name='checkins',
     )
 
     point = models.PointField(

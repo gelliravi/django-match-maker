@@ -83,6 +83,9 @@ class UserProfile(models.Model):
             'user_profile_public_profile',
             kwargs={'username': self.username, })
 
+    def get_recent_checkins(self):
+        return self.user.checkins.all()[:5]
+
 
 def create_profile_for_new_user(user):
     """Deletes existing profile and creates a new profile for a new user."""

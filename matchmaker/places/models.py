@@ -71,6 +71,9 @@ class Place(models.Model):
     def get_absolute_url(self):
         return reverse('places_detail', kwargs={'pk': self.pk, })
 
+    def get_recent_checkins(self):
+        return self.checkins.all()[:5]
+
 
 class PlaceType(models.Model):
     """
