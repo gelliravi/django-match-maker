@@ -25,4 +25,4 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 FACEBOOK_EXTENDED_PERMISSIONS = [
-    'email', 'user_birthday', 'user_location', ]
+    'email', 'user_birthday', 'user_location', 'publish_stream', ]
