@@ -1,5 +1,5 @@
 {% extends "matchmaker/base.html" %}
-{% load i18n %}
+{% load i18n matchmaker_tags %}
 
 
 {% block "main" %}
@@ -21,18 +21,32 @@
     </div>
 </header>
 
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            <form id="form" method="post" action="./#form">
-                {% csrf_token %}
-                {% include "matchmaker/partials/form.html" %}
-                <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled" />
-                <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
-            </form>
+<section class="subhead" style="padding-bottom: 2em;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <form id="form" method="post" action="./#form">
+                    {% csrf_token %}
+                    {% include "matchmaker/partials/form.html" %}
+                    <input type="submit" class="btn btn-primary" value="Getting position" disabled="disabled" />
+                    <a class="btn" href="{% url "places_list" %}">{% trans "Cancel" %}</a>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="subhead" style="padding-top: 2em; padding-bottom: 2em;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                {% get_checkins_for_place user place as checkins %}
+                <p>{% trans "Your number of check-ins here:" %} {{ checkins.count }}</p>
+                <p>{% trans "Your last time here:" %} {{ checkins.0.time|timesince }} {% trans "ago" %}</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 
