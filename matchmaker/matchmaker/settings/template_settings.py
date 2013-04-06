@@ -30,7 +30,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
-    'matchmaker.context_processors.analytics',
+    'matchmaker.context_processors.context_settings',
     'social_auth.context_processors.social_auth_backends',
     'social_auth.context_processors.social_auth_login_redirect',
 )

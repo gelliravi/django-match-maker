@@ -1,5 +1,6 @@
 """Forms for the ``checkins`` app."""
 from django import forms
+from django.conf import settings
 from django.contrib.gis.geos import Point
 from django.utils.translation import ugettext_lazy as _
 
@@ -9,6 +10,22 @@ from places.forms import FormWithLatLngMixin
 
 class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
     """Form that creates a Checkin object."""
+    access_token = forms.CharField(
+        widget=forms.HiddenInput(),
+        required=False,
+    )
+
+    post_to_facebook = forms.BooleanField(
+        label=_('Post to Facebook'),
+        required=False,
+    )
+
+    class Media:
+        css = {
+            'all': ('css/libs/iphone_checkbox/style.css', ),
+        }
+        js = ('js/libs/iphone-style-checkboxes.js', )
+
     def __init__(self, user=None, place=None, *args, **kwargs):
         super(CheckinCreateForm, self).__init__(*args, **kwargs)
         assert place is not None, ('Place cannot be None.')
@@ -58,6 +75,17 @@ class CheckinCreateForm(FormWithLatLngMixin, forms.Form):
             self.cleaned_data['lat'],
         )
         checkin.save()
+
+        from matchmaker import facebook
+        if (self.cleaned_data.get('access_token')
+                and self.cleaned_data.get('post_to_facebook')):
+            graph = facebook.GraphAPI(self.cleaned_data.get('access_token'))
+            graph.put_wall_post(
+                "I'm playing basketball now at {0}."
+                ' Come and join me: {1}{2}'.format(
+                    self.place, settings.HOSTNAME,
+                    self.place.get_absolute_url()
+            ))
         return checkin
 
 

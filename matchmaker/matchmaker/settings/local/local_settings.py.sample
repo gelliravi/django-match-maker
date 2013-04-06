@@ -18,6 +18,8 @@ TEMPLATEDEBUG = DEBUG
 # ============================================================================
 TWITTER_CONSUMER_KEY = ''
 TWITTER_CONSUMER_SECRET = ''
+
+HOSTNAME = 'https://localhost:8000'
 FACEBOOK_APP_ID = ''
 FACEBOOK_API_SECRET = ''
 

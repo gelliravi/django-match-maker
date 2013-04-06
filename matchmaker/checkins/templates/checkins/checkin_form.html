@@ -3,6 +3,12 @@
 
 
 {% block "main" %}
+{% comment %}
+<div id="fb-root"></div>
+<script src="{{ STATIC_URL }}js/libs/facebook.min.js"></script>
+<script src="{{ STATIC_URL }}js/facebook_permissions.js"></script>
+{% endcomment %}
+
 <header class="jumbotron subhead" id="overview">
     <div class="container">
         <h1>{% trans "Check-in now" %}</h1>
@@ -31,6 +37,13 @@
 
 
 {% block "extrajs" %}
+{{ form.media }}
 <script src="{{ STATIC_URL }}checkins/js/geo-success-checkin-form.js"></script>
 <script src="{{ STATIC_URL }}places/js/geolocator.js"></script>
+<script src="{{ STATIC_URL }}js/facebook_permissions.js"></script>
+<script>
+$(document).ready(function() {
+    $(':checkbox').iphoneStyle();
+});
+</script>
 {% endblock %}
