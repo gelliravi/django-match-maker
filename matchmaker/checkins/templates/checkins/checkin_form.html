@@ -42,7 +42,7 @@
             <div class="span12">
                 {% get_checkins_for_place user place as checkins %}
                 <p>{% trans "Your number of check-ins here:" %} {{ checkins.count }}</p>
-                <p>{% trans "Your last time here:" %} {{ checkins.0.time|timesince }} {% trans "ago" %}</p>
+                <p>{% trans "Your last time here:" %} {% if checkins.0 %}{{ checkins.0.time|timesince }} {% trans "ago" %}{% else %} {% trans "Never" %}{% endif %}</p>
             </div>
         </div>
     </div>
