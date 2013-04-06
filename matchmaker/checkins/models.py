@@ -49,6 +49,9 @@ class Checkin(models.Model):
 
     objects = models.GeoManager()
 
+    class Meta:
+        ordering = ('-time', )
+
     def __unicode__(self):
         if self.user:
             username = self.user.email
