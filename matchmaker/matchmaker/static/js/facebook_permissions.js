@@ -37,7 +37,7 @@ function has_permission() {
 
 
 window.fbAsyncInit = function() {
-    $('.iPhoneCheckHandle').click(function() {
+    $(':checkbox').click(function() {
         is_checked = $('#id_post_to_facebook').prop('checked');
         disable_button();
         if (is_checked) {
