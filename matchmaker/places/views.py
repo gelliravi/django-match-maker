@@ -34,6 +34,9 @@ class PlaceCreateView(CreateView):
         kwargs.update({'user': self.request.user, })
         return kwargs
 
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
 
 class PlaceDetailView(DetailView):
     """Allows to see details about a place."""
