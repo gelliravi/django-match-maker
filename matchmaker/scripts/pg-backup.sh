@@ -1,6 +1,6 @@
 #!/bin/bash
 source $HOME/bin/script-settings-matchmaker.sh
-BACKUPFOLDER=$HOME'/backups/'$VENV_NAME'/postres'
+BACKUPFOLDER=$HOME'/backups/'$VENV_NAME'/postgres'
 
 mkdir -p $BACKUPFOLDER
 
