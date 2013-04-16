@@ -39,12 +39,12 @@ class CustomPlaceListView(PlaceListView):
         return ctx
 
     def get_queryset(self):
-        if not self.request.POST.get('lat'):
+        if not self.request.GET.get('lat'):
             lat_lng = get_geoip_position(self.request)
             if not lat_lng:
                 return None
-        lat = self.request.POST.get('lat') or str(lat_lng[0])
-        lng = self.request.POST.get('lng') or str(lat_lng[1])
+        lat = self.request.GET.get('lat') or str(lat_lng[0])
+        lng = self.request.GET.get('lng') or str(lat_lng[1])
 
         if self.filter == 'all':
             return Place.objects.get_distance(lat, lng).order_by('distance')

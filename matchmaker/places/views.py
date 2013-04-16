@@ -60,12 +60,12 @@ class PlaceListView(ListView):
         return [self.template_name, ]
 
     def get_queryset(self):
-        if not self.request.POST.get('lat'):
+        if not self.request.GET.get('lat'):
             lat_lng = get_geoip_position(self.request)
             if not lat_lng:
                 return None
-        lat = self.request.POST.get('lat') or lat_lng[0]
-        lng = self.request.POST.get('lng') or lat_lng[1]
+        lat = self.request.GET.get('lat') or lat_lng[0]
+        lng = self.request.GET.get('lng') or lat_lng[1]
         return Place.objects.get_nearby(5, lat, lng,)
 
     def post(self, request, *args, **kwargs):
