@@ -29,6 +29,8 @@ EXTERNAL_APPS = [
     'reversion',
     'subscribe',
     'subscribe.tests.test_app',
+    'user_media',
+    'easy_thumbnails',
 ]
 
 INTERNAL_APPS = [

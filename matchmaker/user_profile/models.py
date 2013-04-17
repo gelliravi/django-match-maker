@@ -1,4 +1,5 @@
 """Models for the ``user_profile`` app."""
+from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -46,6 +47,10 @@ class UserProfile(models.Model):
         blank=True,
     )
 
+    avatar = generic.GenericRelation(
+        'user_media.UserMediaImage',
+    )
+
     timezone = models.CharField(
         max_length=512,
         verbose_name=_('Timezone'),
@@ -85,6 +90,13 @@ class UserProfile(models.Model):
         return reverse(
             'user_profile_public_profile',
             kwargs={'username': self.username, })
+
+    @property
+    def get_avatar(self):
+        try:
+            return self.avatar.all()[0]
+        except IndexError:
+            return None
 
     def get_recent_checkins(self):
         return self.user.checkins.all()[:5]

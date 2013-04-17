@@ -1,5 +1,5 @@
 {% extends "matchmaker/base.html" %}
-{% load i18n %}
+{% load i18n thumbnail %}
 
 
 {% block "main" %}
@@ -27,6 +27,15 @@
                     {% else %}
                         <input type="text" value="{{ form.instance.username }}" disabled="disabled"/>
                         <span class="help-block">{% trans "This is the name that shows up in the URL when you share your profile with your friends." %}</span>
+                    {% endif %}
+                </div>
+                <div class="control-group">
+                    {% if form.instance.get_avatar %}
+                        <img src="{% thumbnail form.instance.get_avatar.image 100x100 crop upscale %}" />
+                        <a href="{% url "user_media_image_edit" pk=form.instance.get_avatar.pk %}?next=/profile/">Edit picture</a>
+                    {% else %}
+                        No pic
+                        <a href="{% url "user_media_image_create" content_type="userprofile" object_id=form.instance.pk %}?next=/profile/">Upload your picture</a>
                     {% endif %}
                 </div>
                 {% include "matchmaker/partials/form.html" %}

@@ -10,8 +10,11 @@ django-registration-email==0.3
 django-social-auth==0.7.13
 django-reversion==1.6.5
 django-subscribe==0.1.4
+django-user-media==0.9
 South==0.7.6
 pytz==2012h
+Pillow==2.0.0
+easy-thumbnails==1.2
 
 
 # =============================================================================

@@ -1,10 +1,13 @@
 {% extends "matchmaker/base.html" %}
-{% load i18n %}
+{% load i18n thumbnail %}
 
 
 {% block "main" %}
 <header class="jumbotron subhead" id="overview">
     <div class="container">
+        {% if object.get_avatar.image %}
+            <img class="pull-left" style="margin-right: 10px; padding-top:10px" src="{% thumbnail object.get_avatar.image 100x100 crop upscale %}" />
+        {% endif %}
         <h1>{{ object.display_name|default:object.username }}</h1>
         <p class="lead">
             {% blocktrans with place=place.name %}
