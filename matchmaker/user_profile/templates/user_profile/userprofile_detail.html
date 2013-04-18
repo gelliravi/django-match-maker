@@ -5,9 +5,14 @@
 {% block "main" %}
 <header class="jumbotron subhead" id="overview">
     <div class="container">
-        {% if object.get_avatar.image %}
-            <img class="pull-left" style="margin-right: 10px; padding-top:10px" src="{% thumbnail object.get_avatar.image 100x100 crop upscale %}" />
+        {% if object.facebook_profile %}
+            <img class="pull-left" src="https://graph.facebook.com/{{ object.facebook_profile }}/picture?type=large" alt="" style="width:100px; margin-right: 10px; padding-top:10px" />
+        {% else %}
+            {% if object.get_avatar.image %}
+                <img class="pull-left" style="margin-right: 10px; padding-top:10px" src="{% thumbnail object.get_avatar.image 100x100 crop upscale %}" />
+            {% endif %}
         {% endif %}
+
         <h1>{{ object.display_name|default:object.username }}</h1>
         <p class="lead">
             {% blocktrans with place=place.name %}

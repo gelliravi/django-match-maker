@@ -30,12 +30,14 @@
                     {% endif %}
                 </div>
                 <div class="control-group">
-                    {% if form.instance.get_avatar %}
-                        <img src="{% thumbnail form.instance.get_avatar.image 100x100 crop upscale %}" />
-                        <a href="{% url "user_media_image_edit" pk=form.instance.get_avatar.pk %}?next=/profile/">Edit picture</a>
-                    {% else %}
-                        No pic
-                        <a href="{% url "user_media_image_create" content_type="userprofile" object_id=form.instance.pk %}?next=/profile/">Upload your picture</a>
+                    {% if not form.instance.facebook_profile %}
+                        {% if form.instance.get_avatar %}
+                            <img src="{% thumbnail form.instance.get_avatar.image 100x100 crop upscale %}" />
+                            <a href="{% url "user_media_image_edit" pk=form.instance.get_avatar.pk %}?next=/profile/">Edit picture</a>
+                        {% else %}
+                            No pic
+                            <a href="{% url "user_media_image_create" content_type="userprofile" object_id=form.instance.pk %}?next=/profile/">Upload your picture</a>
+                        {% endif %}
                     {% endif %}
                 </div>
                 {% include "matchmaker/partials/form.html" %}
